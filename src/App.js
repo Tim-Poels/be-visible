@@ -1,16 +1,16 @@
 import './App.css';
 import styled from "styled-components"
 import Footer from './components/Footer.js';
+import Register from './components/login_reg/Register'
+import LearnerProfilePage from './components/learner-profile/LearnerProfilePage';
 
 function App() {
   return (
-    <div className='app'>
-      
-      <Content>
+    <div >
 
-      </Content>
+      <LearnerProfilePage />
     </div>
-    
+
   );
 }
 
