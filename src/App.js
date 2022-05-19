@@ -8,7 +8,8 @@ function App() {
   return (
     <div >
 
-      <LearnerProfilePage />
+
+      <Footer />
     </div>
 
   );
@@ -18,12 +19,11 @@ export default App;
 
 //standard padding for  each page
 const Content = styled.div`
-  min-height: 100vh;
+  min-height: 120vh;
   width: 100vw;
   background-color: white;
   display: flex;
   flex-direction: column;
-  padding: 20px 40px 20px 40px;
   z-index: 0;
   overflow-x: scroll;
 `;
