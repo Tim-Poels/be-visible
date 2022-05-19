@@ -1,0 +1,66 @@
+/*
+Input placeholder animation
+*/
+
+input[type=text]{
+  padding-left: 25px ;
+  margin-left: -24px;
+}
+
+.label-float{
+  position: relative;
+  padding-top: 13px;
+}
+
+.label-float input{
+  border: 0;
+  border-bottom: 1px solid lightgrey;
+  outline: none;
+  min-width: 180px;
+  font-size: 16px;
+  transition: all .3s ease-out;
+  -webkit-transition: all .3s ease-out;
+  -moz-transition: all .3s ease-out;
+  -webkit-appearance:none;
+  border-radius:0;
+}
+
+.label-float input:focus{
+  border-bottom: 1px solid lightgray;
+}
+
+.label-float input::placeholder{
+  color:transparent;
+}
+
+.label-float label{
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 13px;
+  transition: all .3s ease-out;
+  -webkit-transition: all .3s ease-out;
+  -moz-transition: all .3s ease-out;
+  color: #a6a6a6;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  margin-left: 30px;
+}
+
+
+.label-float input:required:invalid + label:before{
+  content: '*';
+}
+.label-float input:focus + label,
+.label-float input:not(:placeholder-shown) + label{
+  font-size: 13px;
+  margin-top: 0;
+  color: #a6a6a6;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+}
+
