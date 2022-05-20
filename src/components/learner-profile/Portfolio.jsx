@@ -3,7 +3,7 @@ import { ConfReactIcon, ConfHtmltIcon, ConfJsIcon } from "./ConfigureIcons";
 
 const Portfolio = (props) => {
   return (
-    <div className="portfolio-card">
+    <div data-aos="fade-up" className="portfolio-card">
       <h4>{props.name}</h4>
       <div className="technoligies flex">
         <ConfReactIcon />

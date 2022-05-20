@@ -2,7 +2,7 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 
 const Resume = (props) => {
   return (
-    <div className="margin flex resume-card">
+    <div data-aos="fade-up" className="margin flex resume-card">
       <div className="decoration">
         <div className="circle"></div>
       </div>

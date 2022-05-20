@@ -8,7 +8,7 @@ function App() {
   return (
     <div >
 
-
+      <LearnerProfilePage />
       <Footer />
     </div>
 

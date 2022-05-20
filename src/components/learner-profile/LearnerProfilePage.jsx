@@ -1,6 +1,9 @@
 import React from "react";
 import "./learner-profile-style.css";
 import styled from "styled-components";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import portfolioImg from "./test-img/portfolio-img.JPG";
 import theaterapp from "./test-img/theaterapp.jpg";
 
@@ -13,6 +16,11 @@ import ContactPhone from "./ContactPhone";
 import ContactEmail from "./ContactEmail";
 
 const LearnerProfile = () => {
+  React.useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
+
   const heroStyle = {
     height: "100vh",
     display: "flex",
