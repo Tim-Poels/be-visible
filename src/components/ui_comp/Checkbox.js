@@ -13,7 +13,7 @@ const Checkbox = ({myTitle, handleChange}) => {
   }
 
   return (
-    <CheckB> <input type="checkbox" value={myCheckB} onClick={handleClick} ></input> <Title>{myTitle}</Title></CheckB>
+    <CheckB> <input type="checkbox" value={myCheckB} onClick={handleClick} style={{alignSelf:"center"}}></input> <Title>{myTitle}</Title></CheckB>
   )
 }
 

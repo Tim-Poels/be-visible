@@ -6,12 +6,11 @@ import './button.css'
 
 
 
-const Button = ({ buttonText, buttonImage, width,marginTop, submitForm }) => {
-
+const Button = ({ buttonText, buttonImage, width, marginTop, submitForm, uploadFile }) => {
 
 
   return (
-    <UiBut className='uiBut' style={{width: width,marginTop:marginTop}} onClick={submitForm}>{buttonText}{buttonImage != null ? parse(mySvgArr[buttonImage]) : ''}</UiBut>
+    <UiBut className='uiBut' style={{ width: width, marginTop: marginTop }} onClick={buttonText === "Register" ? submitForm : uploadFile}>{buttonText}{buttonImage != null ? parse(mySvgArr[buttonImage]) : ''}</UiBut>
   )
 }
 

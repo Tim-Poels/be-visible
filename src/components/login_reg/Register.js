@@ -1,5 +1,5 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { createElement } from 'react'
+import { useState,useRef } from 'react'
 import Button from '../ui_comp/Button.js'
 import Input from '../ui_comp/Input.js'
 import styled from 'styled-components'
@@ -8,11 +8,15 @@ import Checkbox from '../ui_comp/Checkbox.js'
 
 const Register = () => {
 
-    const [inputs, setInputs] = useState([]);
+    const [inputs, setInputs] = useState();
+    const [inputAccept, setInputAccept] = useState();
+    const inputFile = useRef()
+    const [profilePic, setProfilePic] = useState()
+    const refProfilePic = useRef()
     
 
     function storeAndUpdate(data) {
-        //adding data and to the current
+        //adding data and update
         setInputs(inputs => ({ ...inputs, ...data }))
     }
 
@@ -21,6 +25,51 @@ const Register = () => {
         console.log(inputs)
     }
 
+    // function forceClickHiddenElement(){
+    //     inputFile.current.click();
+    // }
+
+
+    function uploadFile(e) {
+        let myTarget =e.target.textContent
+        if (myTarget.includes('Camera')){
+            console.log('picture')
+            setInputAccept("image/png, image/jpeg")
+            inputFile.current.click();
+        }else{
+            console.log("cv");
+            setInputAccept("pdf")
+            inputFile.current.click();
+        }
+    
+    }
+
+
+
+
+    function readUploaded(e) {
+        console.log(e.target.files)
+        var file = e.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function() {
+          console.log(e.target.files[0])
+        
+          
+          setProfilePic(reader.result) 
+        //   refProfilePic.current
+
+          
+        //   profilePic.current.style={display : "block"}
+        //   e.target.style = {backgroundImage: `url(${e.target.files[0].src}) `}
+        };
+        
+        reader.readAsText(file);
+        // let objectURL = URL.createObjectURL(reader.result);
+    }
+
+
+   
 
 
     return (
@@ -44,21 +93,23 @@ const Register = () => {
                 <FlexCont>
                     <TitlePic>
                         <Title title={"CV"}></Title>
-                        <Button width={"100px"} marginTop={"0px"} buttonImage={8}></Button>
+                        <Button width={"100px"} marginTop={"0px"} buttonImage={8} uploadFile={uploadFile}></Button>
                     </TitlePic>
                     <TitlePic>
-                        <Title title={"Picture Profile"}></Title>
+                        <Title title={"Picture Profile"} ><img className='myProfilePic' src={profilePic} ref={refProfilePic}></img></Title>
                         <div style={{ alignSelf: "flex-end" }}>
-                            <Button width={"100px"} marginTop={"0px"} buttonImage={9} ></Button>
+                            <Button width={"100px"} marginTop={"0px"} buttonImage={9}  uploadFile={uploadFile}></Button>
                         </div>
                     </TitlePic>
                 </FlexCont>
+            <input type="file" id='file' ref={inputFile} style={{display: 'none'}} accept={inputAccept} onChange={readUploaded} name="files[]"/>
                 <Input title={"Github"} placeholder={"https://github.com/johndoe01"} icon={5} marginB={"6px"} handleChange={storeAndUpdate}></Input>
                 <Input title={"Linkedin"} placeholder={"https://linkedin.com/johndoe01"} icon={6} marginB={"6px"} handleChange={storeAndUpdate}></Input>
                 <Input title={"Website"} placeholder={"https://www.johndoe01.com"} icon={7} handleChange={storeAndUpdate}></Input>
             </InputCont>
             <Button buttonText={"Register"} width={"318px"} submitForm={handleSubmit}>
             </Button>
+           {/*  hidden inputFile */}
             <SpaceFooter />
         </Container>
     )
