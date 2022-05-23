@@ -1,0 +1,9 @@
+
+g{
+    transition: 0.3s;
+}
+
+
+.uiBut:hover g{
+    stroke :black;
+}

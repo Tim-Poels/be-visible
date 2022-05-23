@@ -6,15 +6,15 @@ import './button.css'
 
 
 
-const Button = ({ buttonText, buttonImage, width,marginTop, submitF }) => {
+const SubmitB = ({ buttonText, buttonImage, width,marginTop }) => {
 
 
   return (
-    <UiBut className='uiBut' style={{width: width,marginTop:marginTop}} onClick={submitF}>{buttonText}{buttonImage != null ? parse(mySvgArr[buttonImage]) : ''}</UiBut>
+    <UiBut className='uiBut' style={{width: width,marginTop:marginTop}}>{buttonText}{buttonImage != null ? parse(mySvgArr[buttonImage]) : ''}</UiBut>
   )
 }
 
-export default Button
+export default SubmitB
 
 const UiBut = styled.button`
 height: 45px;
