@@ -29,20 +29,24 @@ const Container = styled.div`
   flex-direction: column;
 `;
 const Header = styled.div`
-  width: 100%;
-  height: 15vh;
+	width: 100%;
+	height: 12vh;
+	display: flex;
+	flex-direction: column;
+  align-items:center
 `;
 
 const TitleContainer = styled.div`
-  display: flex;
+	display: flex;
 `;
 
 const Title = styled.h2`
-  font-family: raleway;
-  font-size: 2rem;
+	font-family: raleway;
+	font-size: 2rem;
+	
 `;
 
 const Subtext = styled.p`
 	font-family: raleway;
-  font-size: 1rem
+  font-size: 1rem;
 `;

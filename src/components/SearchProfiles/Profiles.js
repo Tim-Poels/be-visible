@@ -1,9 +1,9 @@
-import react from "react";
+import react, { useState } from "react";
 import placeHolderImg from "../../images/unknown.png"
 import styled from "styled-components";
 
 
-export default function profiles(props) {
+export default function Profiles(props) {
   let profiles = []
   for (let i = 0; i < props.profiles.length; i++) {
     let profile = props.profiles[i];
@@ -47,7 +47,7 @@ const profileClicked = (profile) => {
   arrow = profileDiv.childNodes[0].childNodes[2];
   arrow.className = "arrow-up";
   arrow.addEventListener("click", () => {
-    descriptionDiv.style.display = "none";
+    descriptionDiv.remove();
     profileDiv.className = null;
     arrow.replaceWith(arrow.cloneNode(true));
 		arrow = profileDiv.childNodes[0].childNodes[2];

@@ -5,14 +5,14 @@ import styled from 'styled-components'
 const Input = ({placeholder, title, icon}) => {
   return (
     <Container>
-<InpTitle>{title}</InpTitle>
-<div className="label-float">
-  <FlexCont>
-  <Icon>{icon}</Icon>
-  <input type="text" placeholder={title}/>
-  <label>{placeholder}</label>
-  </FlexCont>
-</div>
+      <InpTitle>{title}</InpTitle>
+      <div className="label-float">
+        <FlexCont>
+        <Icon>{icon}</Icon>
+        <input type="text" placeholder={title}/>
+        <label>{placeholder}</label>
+      </FlexCont> 
+      </div>
     </Container>
   )
 }
