@@ -6,9 +6,14 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
+<<<<<<< HEAD
     "html-react-parser": "^1.4.12",
+=======
+    "aos": "^2.3.4",
+>>>>>>> e4b6e93b8bf52356538b9f43e3cb73b463cf5f14
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-icons": "^4.3.1",
     "react-scripts": "5.0.1",
     "sass": "^1.51.0",
     "styled-components": "^5.3.5",
