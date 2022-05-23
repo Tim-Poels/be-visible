@@ -1,6 +1,8 @@
 import './App.css';
 import styled from "styled-components"
 import Footer from './components/Footer.js';
+import Register from "./components/login_reg/Register";
+import LearnerProfilePage from "./components/learner-profile/LearnerProfilePage";
 import SearchProfiles from "./components/SearchProfiles/SearchProfiles.js"
 
 const profiles = {
@@ -80,7 +82,7 @@ function App() {
       </Content>
       <Footer />
     </div>
-    
+
   );
 }
 
