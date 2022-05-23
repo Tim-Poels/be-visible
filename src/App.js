@@ -11,12 +11,9 @@ import profiles from "./data"
 
 function App() {
   return (
-    <div className='app'>
-      <Content>
-        <SearchProfiles profiles={profiles} />
-      </Content>
-      <Footer />
-    </div>
+
+    <LoginPage />
+
 
   );
 }
