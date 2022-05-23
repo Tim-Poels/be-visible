@@ -13,7 +13,7 @@ const profiles = {
 			photo_id: "0",
 			role: "React Dev",
 			description:
-				"lorem ipsum fvoibiu zib ozib iu zi bebi foizuehfozihuefio uheofzuih zeiu h?!",
+				"lorem ipsum fvoibiu zib ozib iu zi bebi foizuehfozihuefio uheofzuih zeiu h?! lorem ipsum fvoibiu zib ozib iu zi bebi foizuehfozihuefio uheofzuih zeiu h?! lorem ipsum fvoibiu zib ozib iu zi bebi foizuehfozihuefio uheofzuih zeiu h?!",
 		},
 		{
 			id: "1",

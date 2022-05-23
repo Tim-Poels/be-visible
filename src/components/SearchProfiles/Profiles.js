@@ -8,8 +8,8 @@ export default function profiles(props) {
   for (let i = 0; i < props.profiles.length; i++) {
     let profile = props.profiles[i];
     profiles.push(
-      <ProfileContainer>
-        <Profile key={i}>
+      <ProfileContainer key={i}>
+        <Profile>
 				<Img src={placeHolderImg}></Img>
 				<div>
 					<Name>{profile.name}</Name>
@@ -17,8 +17,7 @@ export default function profiles(props) {
 				</div>
 				<P onClick={() => profileClicked(profile)}>^</P>
 			</Profile>
-      </ProfileContainer>
-			
+      </ProfileContainer>	
 		);
   }
   return (
@@ -29,17 +28,11 @@ export default function profiles(props) {
 }
 
 const profileClicked = (profile) => {
-  console.log(profile)
   let profiles = document.getElementById("profileContainer").childNodes
   let profileDiv = profiles[profile.id];
-  profileDiv.style.height = "auto";
-  profileDiv.style.backgroundColor = "lightblue"
-  profileDiv.style.padding = "10px"
-  profileDiv.style.margin = "-10px" 
-  profileDiv.style.marginTop = "10px"; 
-  profileDiv.style.marginBottom = "10px"; 
+  profileDiv.className = "profile-div-expand";
   let descriptionDiv = document.createElement("div")
-  descriptionDiv.className = "profile-expand-div"
+  descriptionDiv.className = "profile-description-div-expand"
   let description = document.createElement("p")
   description.className = "profile-short-desc"
   description.innerText = profile.description
@@ -48,8 +41,21 @@ const profileClicked = (profile) => {
   button.innerText = "Profile"
   button.className = "profile-button-expand"
   descriptionDiv.appendChild(button)
-  
   profileDiv.appendChild(descriptionDiv)
+  let arrow = profileDiv.childNodes[0].childNodes[2];
+  arrow.replaceWith(arrow.cloneNode(true));
+  arrow = profileDiv.childNodes[0].childNodes[2];
+  arrow.className = "arrow-up";
+  arrow.addEventListener("click", () => {
+    descriptionDiv.style.display = "none";
+    profileDiv.className = null;
+    arrow.replaceWith(arrow.cloneNode(true));
+		arrow = profileDiv.childNodes[0].childNodes[2];
+		arrow.className = "arrow-down";
+    arrow.addEventListener("click", function clicked() {
+      profileClicked(profile)
+    });
+  })
 }
 
 const Container = styled.div`

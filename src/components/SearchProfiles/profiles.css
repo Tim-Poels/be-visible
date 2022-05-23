@@ -18,14 +18,26 @@
   font-family: roboto;
 }
 
-.profile-expand-div {
+.profile-div-expand {
+  height: auto;
+  background-color: lightblue;
+  padding: 10px;
+  margin: -10x;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  box-shadow: 2px 2px 2px 2px rgb(204, 237, 248);
+}
+
+.profile-description-div-expand {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .profile-short-desc{
+  padding-top: 5px;
   width: 70%;
   height: 100%;
   font-family: roboto;
@@ -42,4 +54,24 @@
   border-radius: 5px;
   margin-bottom: 10px;
   font-weight: bold;
+}
+
+.arrow-up {
+  font-size: 1.5rem;
+	margin-right: 10px;
+	margin-left: auto;
+	position: relative;
+	font-family: raleway;
+	font-weight: bolder;
+	transform: scale(1, 0.5) rotate(0turn);
+}
+
+.arrow-down {
+  font-size: 1.5rem;
+	margin-right: 20px;
+	margin-left: auto;
+	position: relative;
+	font-family: raleway;
+	font-weight: bolder;
+	transform: scale(1, 0.5) rotate(0.5turn);
 }
