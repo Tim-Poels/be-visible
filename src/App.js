@@ -1,10 +1,12 @@
 import './App.css';
 import styled from "styled-components"
 import Footer from './components/Footer.js';
+import LoginPage from './Pages/LoginPage';
 import Register from "./components/login_reg/Register";
-import LearnerProfilePage from "./components/learner-profile/LearnerProfilePage";
+import LearnerProfilePage from "./Pages/LearnerProfilePage";
 import SearchProfiles from "./components/SearchProfiles/SearchProfiles.js"
 import React, {useState} from 'react';
+
 
 function App() {
   return (
