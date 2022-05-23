@@ -1,9 +1,19 @@
 import React from "react"
 import styled from "styled-components"
+import { useState} from 'react'
 
-const Checkbox = ({myTitle}) => {
+
+const Checkbox = ({myTitle, handleChange}) => {
+  const [myCheckB, setMyCheckB] = useState(true)
+  
+
+  function handleClick(){
+    setMyCheckB(!myCheckB)
+    handleChange({[myTitle]:myCheckB})
+  }
+
   return (
-    <CheckB> <input type="checkbox"></input> <Title>{myTitle}</Title></CheckB>
+    <CheckB> <input type="checkbox" value={myCheckB} onClick={handleClick} ></input> <Title>{myTitle}</Title></CheckB>
   )
 }
 

@@ -1,23 +1,21 @@
-import React from 'react'
-import { useRef} from 'react'
+import { useState } from 'react'
 import './input.css'
 import styled from 'styled-components'
 import parse from 'html-react-parser'
 import mySvgArr from './svgArr.js'
 
-const Input = ({ placeholder, title, icon, marginB, type, handleChange}) => {
-  const inputValue = useRef()
-
+const Input = ({ placeholder, title, icon, marginB, type, handleChange }) => {
+  const [inputValue, setInputValue] = useState()
   //logos Github and Linkendin needs an extra margin
   if (marginB === undefined) {
     marginB = "4px"
   }
-
  
 
-  function updValue(){
-    handleChange({[title]:inputValue.current.value})
-    console.log(inputValue.current.value)
+
+  function updValue(e) {
+    setInputValue(e.target.value)
+    handleChange({ [title]: inputValue })
   }
 
   return (
@@ -26,7 +24,7 @@ const Input = ({ placeholder, title, icon, marginB, type, handleChange}) => {
       <div className="label-float">
         <FlexCont>
           <Icon style={{ marginBottom: marginB }} >{icon != null ? parse(mySvgArr[icon]) : ''}</Icon>
-          <input type={type != null ? type : "text"} placeholder={title} onChange={updValue} ref={inputValue} />
+          <input type={type != null ? type : "text"} placeholder={title} onChange={updValue} value={inputValue} />
           <label>{placeholder}</label>
         </FlexCont>
       </div>
