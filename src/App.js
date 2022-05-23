@@ -9,12 +9,10 @@ function App() {
 <<<<<<< HEAD
     <div className="App">
       
-=======
     <div >
 
       <LearnerProfilePage />
       <Footer />
->>>>>>> e4b6e93b8bf52356538b9f43e3cb73b463cf5f14
     </div>
 
   );
