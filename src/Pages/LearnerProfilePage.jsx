@@ -7,13 +7,13 @@ import "aos/dist/aos.css";
 import portfolioImg from "./test-img/portfolio-img.JPG";
 import theaterapp from "./test-img/theaterapp.jpg";
 
-import Header from "./Header";
-import Resume from "./Resume";
-import StatusBar from "./StatusBar";
-import Portfolio from "./Portfolio";
-import Certifications from "./Certifications";
-import ContactPhone from "./ContactPhone";
-import ContactEmail from "./ContactEmail";
+import Header from "../components/learner-profile/Header";
+import Resume from "../components/learner-profile/Resume";
+import StatusBar from "../components/learner-profile/StatusBar";
+import Portfolio from "../components/learner-profile/Portfolio";
+import Certifications from "../components/learner-profile/Certifications";
+import ContactPhone from "../components/learner-profile/ContactPhone";
+import ContactEmail from "../components/learner-profile/ContactEmail";
 
 const LearnerProfile = () => {
   React.useEffect(() => {

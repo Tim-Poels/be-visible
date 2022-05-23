@@ -1,0 +1,76 @@
+* {
+  font-family: "Raleway", sans-serif;
+}
+
+h1 {
+  align-self: center;
+  font-weight: 500;
+  font-size: 50px;
+  margin-top: 2rem;
+}
+h3 {
+  margin: 1rem 3rem 1rem 3rem;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  font-weight: 400;
+  color: #606060;
+  font-size: 1em;
+}
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.column {
+  flex-direction: column;
+}
+span {
+  font-family: "Roboto", sans-serif;
+  color: black;
+  font-weight: 500;
+}
+.link-container {
+  font-size: 1.5em;
+  display: flex;
+  width: 200px;
+  justify-content: space-around;
+}
+.form-container {
+  margin-top: 3rem;
+  margin-bottom: 10rem;
+}
+a {
+  color: #606060;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+}
+.active {
+  color: black;
+  font-weight: 500;
+}
+.login-btn {
+  height: 45px;
+  width: 200px;
+  text-align: center;
+  background-color: #65c0ce;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  transition: 0.3s;
+  margin-top: 1rem;
+}
+.login-btn:hover {
+  background: white;
+  border: solid 1px #65c0ce;
+  color: black;
+}
+.login-btn:active {
+  transform: translate(0px, 4px);
+  background: white;
+  border: solid 1px #65c0ce;
+  color: black;
+}

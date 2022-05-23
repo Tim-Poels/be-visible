@@ -2,19 +2,13 @@ import './App.css';
 import styled from "styled-components"
 import Footer from './components/Footer.js';
 import Register from './components/login_reg/Register'
-import LearnerProfilePage from './components/learner-profile/LearnerProfilePage';
+import LoginPage from './Pages/LoginPage';
 
 function App() {
   return (
-<<<<<<< HEAD
-    <div className="App">
-      
-=======
-    <div >
+    <div className='app'>
 
-      <LearnerProfilePage />
-      <Footer />
->>>>>>> e4b6e93b8bf52356538b9f43e3cb73b463cf5f14
+      <LoginPage />
     </div>
 
   );
