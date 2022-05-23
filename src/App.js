@@ -6,7 +6,6 @@ import LearnerProfilePage from './components/learner-profile/LearnerProfilePage'
 
 function App() {
   return (
-<<<<<<< HEAD
     <div className="App">
       
     <div >
