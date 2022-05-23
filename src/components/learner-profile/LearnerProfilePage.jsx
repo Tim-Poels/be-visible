@@ -1,3 +1,4 @@
+/*
 import React from "react";
 import "./learner-profile-style.css";
 import styled from "styled-components";
@@ -67,7 +68,8 @@ const LearnerProfile = () => {
 
       <Section>
         <h2>Contact</h2>
-        {/* Can make this a single component and pass icon as a prop? */}
+        {/* Can make this a single component and pass icon as a prop? *//*}
+        
         <ContactPhone />
         <ContactEmail />
       </Section>
@@ -81,3 +83,4 @@ const Section = styled.div`
 `;
 
 export default LearnerProfile;
+*/
