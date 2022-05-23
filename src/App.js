@@ -27,4 +27,5 @@ const Content = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
+  overflow-x: scroll;
 `;
