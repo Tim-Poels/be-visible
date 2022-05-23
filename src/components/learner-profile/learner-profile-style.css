@@ -1,10 +1,7 @@
 * {
   font-family: "Roboto", sans-serif;
 }
-.body-container {
-  max-width: 100vw;
-  min-height: 100vh;
-}
+
 .bio {
   color: #606060;
   font-weight: 300;
