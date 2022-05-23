@@ -10,12 +10,8 @@ import React, {useState} from 'react';
 
 function App() {
   return (
-    <div className='app'>
-      <Content>
-        <SearchProfiles />
-      </Content>
-      <Footer />
-    </div>
+
+    <LoginPage />
 
   );
 }

@@ -17,10 +17,10 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="body-container center">
+    <div className="body-container center column">
       <div className="center column content">
-        <h1>BeVisible</h1>
-        <h3>
+        <h1 className="login-h1">BeVisible</h1>
+        <h3 className="login-h3">
           By signing in, you agree to our{" "}
           <span>Term and privacy of policy</span>
         </h3>
@@ -52,7 +52,7 @@ const LoginPage = () => {
               checked={checked}
               onChange={handleCheckboxChange}
             />
-            <label HTMLfor="checkbox"> Remember me</label>
+            <label htmlFor="checkbox"> Remember me</label>
             <div className="center">
               <button className="login-btn" type="submit">
                 Login
@@ -61,7 +61,7 @@ const LoginPage = () => {
           </form>
         </div>
       </div>
-      <Footer />
+      <Footer position={"absolute"} />
     </div>
   );
 };
