@@ -5,15 +5,14 @@ import LoginPage from './Pages/LoginPage';
 import Register from "./components/login_reg/Register";
 import LearnerProfilePage from "./Pages/LearnerProfilePage";
 import SearchProfiles from "./components/SearchProfiles/SearchProfiles.js"
-import profiles from "./data"
-
+import React, {useState} from 'react';
 
 
 function App() {
   return (
     <div className='app'>
       <Content>
-        <SearchProfiles profiles={profiles} />
+        <SearchProfiles />
       </Content>
       <Footer />
     </div>

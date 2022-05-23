@@ -1,24 +1,26 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components"
 import { MdPeopleOutline } from "react-icons/md"
 import "./profiles.css"
 import Filter from "./Filter.js"
 import Profiles from "./Profiles.js";
+import profileData from "../../data.js";
 
-export default function SearchProfiles(props) {
+export default function SearchProfiles() {
+  const [profiles, setProfiles] = useState(profileData);
   return (
-    <Container>
-      <Header>
-        <TitleContainer>
-          <MdPeopleOutline className="students-icon" />
-          <Title>Students</Title>
-        </TitleContainer>
-        <Subtext>Meet the students!</Subtext>
-      </Header>
-      <Filter />
-      <Profiles profiles={props.profiles.data} />
-    </Container>
-  )
+		<Container>
+			<Header>
+				<TitleContainer>
+					<MdPeopleOutline className="students-icon" />
+					<Title>Students</Title>
+				</TitleContainer>
+				<Subtext>Meet the students!</Subtext>
+			</Header>
+			<Filter setProfiles={setProfiles} profiles={profiles} />
+			<Profiles profiles={profiles} />
+		</Container>
+	);
 }
 
 const Container = styled.div`

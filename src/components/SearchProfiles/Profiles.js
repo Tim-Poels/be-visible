@@ -5,8 +5,8 @@ import styled from "styled-components";
 
 export default function Profiles(props) {
   let profiles = []
-  for (let i = 0; i < props.profiles.length; i++) {
-    let profile = props.profiles[i];
+  for (let i = 0; i < props.profiles.data.length; i++) {
+    let profile = props.profiles.data[i];
     profiles.push(
       <ProfileContainer key={i}>
         <Profile>
@@ -22,7 +22,7 @@ export default function Profiles(props) {
   }
   return (
     <Container id="profileContainer">
-      {profiles}
+      {profiles}  
     </Container>
   )
 }
