@@ -14,7 +14,7 @@ export default function Profiles(props) {
 						<Name>{profile.name}</Name>
 						<Role>{profile.role}</Role>
 					</div>
-					<P onClick={() => profileClicked(profile.id, profile.description)}>^</P>
+					<P onClick={() => profileClicked(profile.id, props)}>^</P>
 				</Profile>
 			</ProfileContainer>
 		);
@@ -27,24 +27,24 @@ export default function Profiles(props) {
 }
 
 
-export const profileClicked = (profileID, description) => {
-  let profilesChildren = document.getElementById("profileContainer").childNodes
-  let profileDiv;
-  console.log(profilesChildren);
-  for (let i = 0; i < profilesChildren.length; i++) {
-    console.log(profilesChildren[i].id, profileID);
-    if (profilesChildren[i].id == profileID) {
-      profileDiv = profilesChildren[i];
+export const profileClicked = (profileID, props) => {
+  let profilesFromComp = document.getElementById("profileContainer").childNodes;
+  let profileDiv = "empty"
+  for (let i = 0; i < props.profiles.data.length; i++) {
+    if (profileID === props.profiles.data[i].id) {
+      profileDiv = profilesFromComp[i];
       break;
     }
   }
-  console.log(profileDiv)
+  if (profileDiv == "empty") {
+    console.log("error profileDiv is empty")
+  }
   profileDiv.className = "extend-out-before";
   let descriptionDiv = document.createElement("div");
 	descriptionDiv.className = "profile-description-div-expand";
 	let descriptionEl = document.createElement("p");
 	descriptionEl.className = "profile-short-desc";
-	descriptionEl.innerText = description;
+	descriptionEl.innerText = props.profiles.data[profileID].description;
 	descriptionDiv.appendChild(descriptionEl);
   let button = document.createElement("button");
 	button.innerText = "Profile";
@@ -58,33 +58,36 @@ export const profileClicked = (profileID, description) => {
 	setTimeout(() => {
 		profileDiv.className = "profile-div-expand";
 		arrow.addEventListener("click", () => {
-			profileUnClicked(profileID, description);
+			profileUnClicked(profileID, props);
 		});
 	}, 500);	
 }
 
-export const profileUnClicked = (profileID, desc) => {
-  let profilesChildren = document.getElementById("profileContainer").childNodes;
-	let profile;
-	for (let i = 0; i < profilesChildren.length; i++) {
-		if (profilesChildren[i].id == profileID) {
-			profile = profilesChildren[i];
+export const profileUnClicked = (profileID, props) => {
+  let profilesFromComp = document.getElementById("profileContainer").childNodes;
+	let profileDiv = "empty";
+	for (let i = 0; i < props.profiles.data.length; i++) {
+		if (profileID === props.profiles.data[i].id) {
+			profileDiv = profilesFromComp[i];
 			break;
 		}
 	}
-  let descriptionDiv = profile.childNodes[1];
-	profile.className = "quick-fade-out";
+	if (profileDiv == "empty") {
+		console.log("error profileDiv is empty");
+	}
+  let descriptionDiv = profileDiv.childNodes[1];
+	profileDiv.className = "quick-fade-out";
   descriptionDiv.style.display = "none"
-  let profileDiv = profile.childNodes[0];
-	let arrow = profileDiv.childNodes[2];
+  let TitleDiv = profileDiv.childNodes[0];
+	let arrow = TitleDiv.childNodes[2];
 	arrow.replaceWith(arrow.cloneNode(true));
-	arrow = profileDiv.childNodes[2];
+	arrow = TitleDiv.childNodes[2];
 	arrow.className = "arrow-down";
   setTimeout(() => {
     descriptionDiv.remove();
-		profile.className = "after-quick-fade-out"
+		profileDiv.className = "after-quick-fade-out"
     arrow.addEventListener("click", function clicked() {
-			profileClicked(profileID, desc);
+			profileClicked(profileID, props);
 		});
 	}, 450);	
 	};
