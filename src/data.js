@@ -1,7 +1,7 @@
 const profiles = {
     data: [
         {
-            id: "0",
+            id: "00",
             name: "Wade Warren",
             photo_id: "0",
             role: "React Dev",
@@ -9,7 +9,7 @@ const profiles = {
                 "lorem ipsum fvoibiu zib ozib iu zi bebi foizuehfozihuefio uheofzuih zeiu h?! lorem ipsum fvoibiu zib ozib iu zi bebi foizuehfozihuefio uheofzuih zeiu h?! lorem ipsum fvoibiu zib ozib iu zi bebi foizuehfozihuefio uheofzuih zeiu h?!",
         },
         {
-            id: "1",
+            id: "01",
             name: "Billy Burger",
             photo_id: "1",
             role: "Vue.js Dev",
@@ -17,7 +17,7 @@ const profiles = {
                 "lorem ipsum fvoibiu zib ozib iu zi bebi foizuehfozihuefio uheofzuih zeiu h?!",
         },
         {
-            id: "2",
+            id: "02",
             name: "Tina Turner",
             photo_id: "2",
             role: "Software Engineer",
@@ -25,7 +25,7 @@ const profiles = {
                 "lorem ipsum fvoibiu zib ozib iu zi bebi foizuehfozihuefio uheofzuih zeiu h?!",
         },
         {
-            id: "3",
+            id: "03",
             name: "Don Domingo",
             photo_id: "3",
             role: "Security Consultant",
@@ -33,7 +33,7 @@ const profiles = {
                 "lorem ipsum fvoibiu zib ozib iu zi bebi foizuehfozihuefio uheofzuih zeiu h?!",
         },
         {
-            id: "4",
+            id: "04",
             name: "Fred Firefox",
             photo_id: "4",
             role: "Web Designer",
@@ -41,7 +41,7 @@ const profiles = {
                 "lorem ipsum fvoibiu zib ozib iu zi bebi foizuehfozihuefio uheofzuih zeiu h?!",
         },
         {
-            id: "5",
+            id: "05",
             name: "Mary Monroe",
             photo_id: "5",
             role: "Backend Developer",
@@ -49,7 +49,7 @@ const profiles = {
                 "lorem ipsum fvoibiu zib ozib iu zi bebi foizuehfozihuefio uheofzuih zeiu h?!",
         },
         {
-            id: "6",
+            id: "06",
             name: "Sara short",
             photo_id: "6",
             role: "Freelancer",
@@ -57,7 +57,7 @@ const profiles = {
                 "lorem ipsum fvoibiu zib ozib iu zi bebi foizuehfozihuefio uheofzuih zeiu h?!",
         },
         {
-            id: "7",
+            id: "07",
             name: "Captain Crunch",
             photo_id: "7",
             role: "CEO",

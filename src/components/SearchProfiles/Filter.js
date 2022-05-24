@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { BsSearch } from "react-icons/bs"
 import { FiFilter } from "react-icons/fi"
 import { useState } from "react"
+import { profileClicked } from "./Profiles.js";
 
 export default function Filter(props) {
 	/*
@@ -27,6 +28,32 @@ export default function Filter(props) {
 	const [backup, setBackup] = useState(props.profiles)
 
 	const storeAndUpdate = (ev) => {
+		//resetting the opened up profiles
+		let profiles = document.getElementById("profileContainer").childNodes;
+		for (let i = 0; i < profiles.length; i++) {
+			let profile = profiles[i]
+			let profileID = profiles[i].id
+			let desc = "broke";
+			for (let i = 0; i < backup.data.length; i++) {
+				if (backup.data[i].id == profileID) {
+					desc = backup.data[i].description
+				}
+			}
+			profile.className = "after-quick-fade-out";
+			if (profile.childNodes.length > 1) {
+				let descriptionDiv = profile.childNodes[1];
+				descriptionDiv.remove();
+				let profileDiv = profile.childNodes[0];
+				let arrow = profileDiv.childNodes[2];
+				arrow.replaceWith(arrow.cloneNode(true));
+				arrow = profileDiv.childNodes[2];
+				arrow.className = "arrow-down";
+				arrow.addEventListener("click", function clicked() {
+					profileClicked(profileID, desc);
+				});
+			}
+		}
+		//filtering
 		let passData = { data: [] }
 		for (let i = 0; i < backup.data.length; i++) {
 			if (backup.data[i].name.toLowerCase().includes(ev.target.value.toLowerCase())) {
