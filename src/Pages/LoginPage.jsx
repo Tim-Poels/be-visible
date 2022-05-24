@@ -4,16 +4,33 @@ import Input from "../components/ui_comp/Input";
 import Footer from "../components/Footer";
 
 const LoginPage = () => {
-  const handleChange = (data) => {
-    console.log(data);
-  };
+  //code for setting username and password
+  const [pwd, setPwd] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleChange = (data) => {};
   const [checked, setChecked] = useState(false);
   const handleCheckboxChange = () => {
     setChecked(!checked);
   };
-
+  const LOGIN_URL = "https://bevisible-backend.herokuapp.com/user/signin";
   const handleSubmit = (e) => {
     e.preventDefault();
+    fetch(LOGIN_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      body: JSON.stringify({
+        email: email,
+        password: pwd,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   return (
@@ -36,8 +53,9 @@ const LoginPage = () => {
               title={"Email"}
               placeholder={"johndoe@mail.com"}
               icon={2}
-              type={"email"}
+              type={"text"}
               handleChange={handleChange}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <Input
               title={"Login Password"}
@@ -45,6 +63,7 @@ const LoginPage = () => {
               icon={3}
               type={"password"}
               handleChange={handleChange}
+              onChange={(e) => setPwd(e.target.value)}
             />
             <input
               type="checkbox"
