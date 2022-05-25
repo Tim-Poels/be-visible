@@ -123,61 +123,11 @@ h4 {
 .icon {
   width: 20%;
 }
-.ButtonStyle {
-  position: fixed;
-  right: 15px;
-  top: 15px;
-  z-index: 9998;
-  border: 0;
-  transition: all 1s;
-  outline: none;
-  background-color: #149ddd;
-  color: #fff;
-  width: 40px;
-  height: 40px;
-  border-radius: 50px;
-  cursor: pointer;
-  padding: 5px;
-}
-
-@keyframes navbar-fade-in {
-  0% {
-    width: 0;
+/* @media only screen and (min-width: 600px) {
+  .body-container {
+    padding-left: 300px;
   }
-
-  100% {
-    width: 300px;
-  }
-}
-@keyframes navbar-fade-out {
-  0% {
-    width: 300px;
-  }
-
-  100% {
-    width: 0;
-  }
-}
-.navbar-left {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 300px;
-  transition: all ease-in-out 1s;
-  z-index: 9997;
-  /* transition: all 0.5s; */
-  background: #040b14;
-  overflow-y: auto;
-}
-/* .navbar-left :hover {
-  width: 0;
 } */
-.block {
-  visibility: visible;
-  animation: navbar-fade-in 1s normal;
-}
-.none {
-  visibility: hidden;
-  animation: navbar-fade-out 1s normal;
+html {
+  scroll-behavior: smooth;
 }

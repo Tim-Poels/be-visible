@@ -35,6 +35,7 @@ const LearnerProfile = () => {
       <Section primary style={heroStyle}>
         <NavbarMob />
         <Header
+          id="hero"
           name={"Augustus Granpa"}
           dev={"Frontend Developer"}
           bio={
