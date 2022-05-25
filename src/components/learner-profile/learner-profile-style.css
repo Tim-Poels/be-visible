@@ -123,3 +123,11 @@ h4 {
 .icon {
   width: 20%;
 }
+/* @media only screen and (min-width: 600px) {
+  .body-container {
+    padding-left: 300px;
+  }
+} */
+html {
+  scroll-behavior: smooth;
+}

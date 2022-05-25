@@ -1,11 +1,11 @@
 import React from 'react'
-import { useRef} from 'react'
+import { useRef } from 'react'
 import './input.css'
 import styled from 'styled-components'
 import parse from 'html-react-parser'
 import mySvgArr from './svgArr.js'
 
-const Input = ({ placeholder, title, icon, marginB, type, handleChange}) => {
+const Input = ({ placeholder, title, icon, marginB, type, handleChange }) => {
   const inputValue = useRef()
 
   //logos Github and Linkendin needs an extra margin
@@ -13,11 +13,10 @@ const Input = ({ placeholder, title, icon, marginB, type, handleChange}) => {
     marginB = "4px"
   }
 
- 
 
-  function updValue(){
-    handleChange({[title]:inputValue.current.value})
-    console.log(inputValue.current.value)
+
+  function updValue() {
+    handleChange({ [title]: inputValue.current.value })
   }
 
   return (

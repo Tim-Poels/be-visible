@@ -15,6 +15,7 @@ import Certifications from "../components/learner-profile/Certifications";
 import ContactPhone from "../components/learner-profile/ContactPhone";
 import ContactEmail from "../components/learner-profile/ContactEmail";
 import Footer from "../components/Footer";
+import NavbarMob from "../components/ui_comp/NavbarMob";
 
 const LearnerProfile = () => {
   React.useEffect(() => {
@@ -32,7 +33,9 @@ const LearnerProfile = () => {
   return (
     <div className="body-container">
       <Section primary style={heroStyle}>
+        <NavbarMob />
         <Header
+          id="hero"
           name={"Augustus Granpa"}
           dev={"Frontend Developer"}
           bio={

@@ -1,0 +1,70 @@
+.ButtonStyle {
+  position: fixed;
+  right: 15px;
+  top: 15px;
+  z-index: 9998;
+  border: 0;
+  transition: all 1s;
+  outline: none;
+  background-color: #149ddd;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  padding: 5px;
+}
+.navbar-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  transition: all ease-in-out 1s;
+  z-index: 9997;
+  background: #040b14;
+  overflow-y: auto;
+  padding-top: 50px;
+}
+.block {
+  width: 300px;
+}
+.none {
+  width: 0;
+}
+.navbar-cont {
+  padding-left: 20px;
+}
+.navbar-cont a {
+  display: flex;
+  align-items: center;
+  color: #a8a9b4;
+  padding: 12px 15px;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+.navbar-cont a:hover {
+  color: #fff;
+}
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 200px;
+  margin-bottom: 2rem;
+}
+.profile img {
+  margin: 15px auto;
+  width: 120px;
+  border: 8px solid #2c2f3f;
+  border-radius: 50%;
+  max-width: 100%;
+  height: auto;
+}
+.profile h4 {
+  font-size: 24px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  margin-bottom: 10px;
+}
