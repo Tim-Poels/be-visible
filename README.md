@@ -18,3 +18,4 @@ The app will be comprised of three parts:
 works.
 - One for Companies and recruiters where they will be able to check out learners profiles
 
+### Technologies used : React
