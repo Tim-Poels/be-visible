@@ -40,6 +40,7 @@ const LoginPage = () => {
         <h3 className="login-h3">
           By signing in, you agree to our{" "}
           <span>Term and privacy of policy</span>
+
         </h3>
         <div className="link-container">
           <a className="active" href="#">
