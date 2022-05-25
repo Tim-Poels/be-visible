@@ -1,20 +1,24 @@
-import React, { createElement } from 'react'
-import { useState,useRef } from 'react'
+import { useState, useRef } from 'react'
 import Button from '../ui_comp/Button.js'
 import Input from '../ui_comp/Input.js'
 import styled from 'styled-components'
 import Title from '../ui_comp/Title.js'
 import Checkbox from '../ui_comp/Checkbox.js'
+import cvImage from '../../images/cvImage.png'
 
 const Register = () => {
 
-    const [inputs, setInputs] = useState();
-    const [inputAccept, setInputAccept] = useState();
-    const inputFile = useRef()
-    const [profilePic, setProfilePic] = useState()
-    const refProfilePic = useRef()
-    
+    const [inputs, setInputs] = useState()
+    const [inputAccept, setInputAccept] = useState()
+    const [url, setUrl] = useState('')
+    const [cvVisibility, setCvVisibility] = useState('hidden')
+    const [profileVisibility, setProfileVisibility] = useState('hidden')
+    const [buttonType,setButtonType] = useState('')
+    const [incrFiles, setIncrFiles] = useState(0)
 
+    const inputFile = useRef()
+
+   
     function storeAndUpdate(data) {
         //adding data and update
         setInputs(inputs => ({ ...inputs, ...data }))
@@ -23,53 +27,56 @@ const Register = () => {
     function handleSubmit() {
         console.log("submited")
         console.log(inputs)
+        console.log(inputAccept)
+
     }
 
-    // function forceClickHiddenElement(){
-    //     inputFile.current.click();
-    // }
+    function autoClickInput() {
+        inputFile.current.click();
+    }
 
+    function onLoadFile() {
+        visility(buttonType)
+    }
 
-    function uploadFile(e) {
-        let myTarget =e.target.textContent
-        if (myTarget.includes('Camera')){
+   async function uploadFile(e)  {
+        let myTarget = e.target.textContent
+        if (myTarget.includes('Camera')) {
             console.log('picture')
             setInputAccept("image/png, image/jpeg")
-            inputFile.current.click();
-        }else{
+            //the useState is taking some time to change the variable
+            autoClickInput()
+            setButtonType('picture')
+        } else {
             console.log("cv");
-            setInputAccept("pdf")
-            inputFile.current.click();
+            setInputAccept("application/pdf")
+            setTimeout(autoClickInput, 15)
+            setButtonType('cv')
         }
-    
+    }
+
+
+
+   async function readUploaded() {
+        setIncrFiles(incrFiles + 1)
+        const img = inputFile.current.files[incrFiles]
+        const obj = URL.createObjectURL(img)
+        setUrl(obj)
+        // return img
     }
 
 
 
 
-    function readUploaded(e) {
-        console.log(e.target.files)
-        var file = e.target.files[0];
-        var reader = new FileReader();
 
-        reader.onload = function() {
-          console.log(e.target.files[0])
-        
-          
-          setProfilePic(reader.result) 
-        //   refProfilePic.current
+    function visility(type) {
+        if (type === "cv") {
+            setCvVisibility(!cvVisibility)
+        } else {
+                setProfileVisibility(!profileVisibility)
+        }
 
-          
-        //   profilePic.current.style={display : "block"}
-        //   e.target.style = {backgroundImage: `url(${e.target.files[0].src}) `}
-        };
-        
-        reader.readAsText(file);
-        // let objectURL = URL.createObjectURL(reader.result);
     }
-
-
-   
 
 
     return (
@@ -93,23 +100,27 @@ const Register = () => {
                 <FlexCont>
                     <TitlePic>
                         <Title title={"CV"}></Title>
-                        <Button width={"100px"} marginTop={"0px"} buttonImage={8} uploadFile={uploadFile}></Button>
+                        <div style={{ display: "flex" }}>
+                            <Button width={"80px"} marginTop={"0px"} buttonImage={8} uploadFile={uploadFile}></Button>
+                            <img src={cvImage} style={{  height: "45px", backgroundRepeat: "no-repeat", visibility: cvVisibility }} alt={"cv"} ></img>
+                        </div>
                     </TitlePic>
                     <TitlePic>
-                        <Title title={"Picture Profile"} ><img className='myProfilePic' src={profilePic} ref={refProfilePic}></img></Title>
-                        <div style={{ alignSelf: "flex-end" }}>
-                            <Button width={"100px"} marginTop={"0px"} buttonImage={9}  uploadFile={uploadFile}></Button>
+                        <Title title={"Picture Profile"} ></Title>
+                        <div style={{ alignSelf: "flex-end", display: "flex", gap: "8px" }}>
+                            <Button width={"80px"} marginTop={"0px"} buttonImage={9} uploadFile={uploadFile}></Button>
+                            <img src={url} style={{ height: "45px", visibility: profileVisibility }} alt={"profile"}></img>
                         </div>
                     </TitlePic>
                 </FlexCont>
-            <input type="file" id='file' ref={inputFile} style={{display: 'none'}} accept={inputAccept} onChange={readUploaded} name="files[]"/>
+                <input type="file" id='file' ref={inputFile} style={{ display: 'none' }} accept={inputAccept} onChange={readUploaded} name="files[]" onInput={onLoadFile}/>
                 <Input title={"Github"} placeholder={"https://github.com/johndoe01"} icon={5} marginB={"6px"} handleChange={storeAndUpdate}></Input>
                 <Input title={"Linkedin"} placeholder={"https://linkedin.com/johndoe01"} icon={6} marginB={"6px"} handleChange={storeAndUpdate}></Input>
                 <Input title={"Website"} placeholder={"https://www.johndoe01.com"} icon={7} handleChange={storeAndUpdate}></Input>
             </InputCont>
             <Button buttonText={"Register"} width={"318px"} submitForm={handleSubmit}>
             </Button>
-           {/*  hidden inputFile */}
+            {/*  hidden inputFile */}
             <SpaceFooter />
         </Container>
     )
