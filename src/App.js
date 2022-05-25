@@ -11,7 +11,11 @@ import React, { useState } from 'react';
 function App() {
   return (
 
-    <LearnerProfilePage />
+    <div >
+      <Register></Register>
+      {/* <LearnerProfilePage /> */}
+      <Footer /> 
+    </div>
 
   );
 }

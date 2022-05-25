@@ -14,6 +14,7 @@ export default function Footer(props) {
 
 const FooterContainer = styled.div`
 	width: 100vw;
+  position: sticky;
   bottom: 0;
   display: flex;
   align-items: center;

@@ -1,74 +1,157 @@
-import React from 'react'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Button from '../ui_comp/Button.js'
 import Input from '../ui_comp/Input.js'
 import styled from 'styled-components'
 import Title from '../ui_comp/Title.js'
 import Checkbox from '../ui_comp/Checkbox.js'
-
+import cvImage from '../../images/cvImage.png'
+import Axios from 'axios'
+// import { Image } from "cloudinary-react"
 
 const Register = () => {
 
-    const [inputs, setInputs] = useState([]);
+    const [inputs, setInputs] = useState()
+    const [inputAccept, setInputAccept] = useState()
+    const [url, setUrl] = useState('')
+    const [cvVisibility, setCvVisibility] = useState('hidden')
+    const [profileVisibility, setProfileVisibility] = useState('hidden')
+    const [buttonType, setButtonType] = useState('')
+    const [incrFiles, setIncrFiles] = useState(0)
+
+    const inputFile = useRef()
 
 
+    function storeAndUpdate(data) {
+        //adding data and update
+        setInputs(inputs => ({ ...inputs, ...data }))
+    }
 
+<<<<<<< HEAD
+    function handleSubmit() {
+        console.log("submited")
+=======
     function pushData(data) {
         //if data exist replace else add
         //fiter array
         //  setInputs(values =>({...values, [title]:data}))
+>>>>>>> master
         console.log(inputs)
+        console.log(inputAccept)
+
     }
 
+    function autoClickInput() {
+        inputFile.current.click();
+    }
+
+    function onLoadFile() {
+        visility(buttonType)
+    }
+
+    async function uploadFile(e) {
+        let myTarget = e.target.textContent
+        if (myTarget.includes('Camera')) {
+            console.log('picture')
+            await setInputAccept("image/png, image/jpeg")
+            //the useState is taking some time to change the variable
+            await autoClickInput()
+            await setButtonType('picture')
+        } else {
+            console.log("cv");
+            await setInputAccept("application/pdf")
+            setTimeout(autoClickInput, 15)
+            setButtonType('cv')
+        }
+    }
+
+
+
+    async function readUploaded() {
+        setIncrFiles(incrFiles + 1)
+        const img = inputFile.current.files[incrFiles]
+        console.log(img.name)
+        //create The Image locally
+            // const obj = URL.createObjectURL(img)
+        
+        if (img.name.includes("png" || "jpeg" || "jpg")) {
+            const formData = new FormData()
+            formData.append('file', img)
+            formData.append("upload_preset", "gzllmk5l")
+            Axios.post("https://api.cloudinary.com/v1_1/dxq4veqsa/upload", formData)
+                .then((response) => {
+                    console.log(response)
+                    setUrl(response.data.secure_url)
+                    //add to Register OBJECT the link of the picture of the user
+                    storeAndUpdate({pictureURL : response.data.secure_url})
+                })
+        }
+    }
+
+<<<<<<< HEAD
+=======
     const handleSubmit = () => {
 
     }
+>>>>>>> master
 
+
+
+
+    function visility(type) {
+        if (type === "cv") {
+            setCvVisibility(!cvVisibility)
+        } else {
+            setProfileVisibility(!profileVisibility)
+        }
+
+    }
 
 
     return (
 
         <Container>
             <MainTitle>Register</MainTitle>
-            <form onSubmit={handleSubmit}>
-                <InputCont>
-
-                    <Input title={"First Name"} placeholder={"John"} icon={0} handleChange={pushData}></Input>
-
-                    <Input title={"Last Name"} placeholder={"Doe"} icon={1} handleChange={pushData}></Input>
-                    <Input title={"Email"} placeholder={"johndoe@mail.com"} icon={2} type={"email"} ></Input>
-
-                    <Input title={"Login Password"} placeholder={"Password"} icon={3} type={"password"}></Input>
-                    <Input title={"Phone Number"} placeholder={"+32474123456"} icon={4} type={"tel"}></Input>
-
-                    <TitleCont>
-                        <Title title={"Back-End / Front-End"}></Title>
-                        <CheckBoxCont>
-                            <Checkbox svg={11} myTitle={"Back-End"}></Checkbox>
-                            <Checkbox svg={11} myTitle={"Front-End"}></Checkbox>
-                        </CheckBoxCont>
-                    </TitleCont>
-                    <FlexCont>
-                        <TitlePic>
-                            <Title title={"CV"}></Title>
-                            <Button width={"100px"} marginTop={"0px"} buttonImage={8}></Button>
-                        </TitlePic>
-                        <TitlePic>
-                            <Title title={"Picture Profile"}></Title>
-                            <div style={{ alignSelf: "flex-end" }}>
-                                <Button width={"100px"} marginTop={"0px"} buttonImage={9} ></Button>
-                            </div>
-                        </TitlePic>
-                    </FlexCont>
-                    <Input title={"Github"} placeholder={"https://github.com/johndoe01"} icon={5} marginB={"6px"}></Input>
-                    <Input title={"Linkedin"} placeholder={"https://linkedin.com/johndoe01"} icon={6} marginB={"6px"}></Input>
-                    <Input title={"Website"} placeholder={"https://www.johndoe01.com"} icon={7}></Input>
-                </InputCont>
-                <Button buttonText={"Register"} width={"318px"} type="submit">
-                </Button>
-            </form>
+            <InputCont>
+                <Input title={"First Name"} placeholder={"John"} icon={0} handleChange={storeAndUpdate}></Input>
+                <Input title={"Last Name"} placeholder={"Doe"} icon={1} handleChange={storeAndUpdate}></Input>
+                <Input title={"Email"} placeholder={"johndoe@mail.com"} icon={2} type={"email"} handleChange={storeAndUpdate}></Input>
+                <Input title={"Password"} placeholder={"Password"} icon={3} type={"password"} handleChange={storeAndUpdate}></Input>
+                <Input title={"Confirm Password"} placeholder={"Password"} icon={3} type={"password"} handleChange={storeAndUpdate}></Input>
+                <Input title={"Phone Number"} placeholder={"+32474123456"} icon={4} type={"tel"} handleChange={storeAndUpdate}></Input>
+                <TitleCont>
+                    <Title title={"Back-End / Front-End"} ></Title>
+                    <CheckBoxCont>
+                        <Checkbox svg={11} myTitle={"Back-End"} handleChange={storeAndUpdate}></Checkbox>
+                        <Checkbox svg={11} myTitle={"Front-End"} handleChange={storeAndUpdate}></Checkbox>
+                    </CheckBoxCont>
+                </TitleCont>
+                <FlexCont>
+                    <TitlePic>
+                        <Title title={"CV"}></Title>
+                        <div style={{ display: "flex" }}>
+                            <Button width={"80px"} marginTop={"0px"} buttonImage={8} uploadFile={uploadFile}></Button>
+                            <img src={cvImage} style={{ height: "45px", backgroundRepeat: "no-repeat", visibility: cvVisibility }} alt={"cv"} ></img>
+                        </div>
+                    </TitlePic>
+                    <TitlePic>
+                        <Title title={"Picture Profile"} ></Title>
+                        <div style={{ alignSelf: "flex-end", display: "flex", gap: "8px" }}>
+                            <Button width={"80px"} marginTop={"0px"} buttonImage={9} uploadFile={uploadFile}></Button>
+                            <img src={url} style={{ height: "45px", visibility: profileVisibility }} alt={"profile"}></img>
+                            {/* <Image cloudName="dxq4veqsa" public_id =" "/> */}
+                        </div>
+                    </TitlePic>
+                </FlexCont>
+                <input type="file" id='file' ref={inputFile} style={{ display: 'none' }} accept={inputAccept} onChange={readUploaded} name="files[]" onInput={onLoadFile} />
+                <Input title={"Github"} placeholder={"https://github.com/johndoe01"} icon={5} marginB={"6px"} handleChange={storeAndUpdate}></Input>
+                <Input title={"Linkedin"} placeholder={"https://linkedin.com/johndoe01"} icon={6} marginB={"6px"} handleChange={storeAndUpdate}></Input>
+                <Input title={"Website"} placeholder={"https://www.johndoe01.com"} icon={7} handleChange={storeAndUpdate}></Input>
+            </InputCont>
+            <Button buttonText={"Register"} width={"318px"} submitForm={handleSubmit}>
+            </Button>
+            {/*  hidden inputFile */}
+            <SpaceFooter />
         </Container>
-
     )
 }
 
@@ -129,4 +212,9 @@ const TitlePic = styled.div`
     display:flex;
     flex-direction: column;
     align-self: center;
+`
+
+const SpaceFooter = styled.div`
+    height: 10vh;
+    width: 100%;
 `
