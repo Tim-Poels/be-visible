@@ -1,8 +1,12 @@
 import './App.css';
 import styled from "styled-components"
 import Footer from './components/Footer.js';
-import Register from './components/login_reg/Register'
-import LearnerProfilePage from './components/learner-profile/LearnerProfilePage';
+import LoginPage from './Pages/LoginPage';
+import Register from "./components/login_reg/Register";
+import LearnerProfilePage from "./Pages/LearnerProfilePage";
+import SearchProfiles from "./components/SearchProfiles/SearchProfiles.js"
+import React, { useState } from 'react';
+
 
 function App() {
   return (
@@ -25,6 +29,5 @@ const Content = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
-  z-index: 0;
   overflow-x: scroll;
 `;

@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import { useState } from 'react'
+=======
+import React from 'react'
+import { useRef } from 'react'
+>>>>>>> master
 import './input.css'
 import styled from 'styled-components'
 import parse from 'html-react-parser'

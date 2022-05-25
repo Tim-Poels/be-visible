@@ -26,8 +26,15 @@ const Register = () => {
         setInputs(inputs => ({ ...inputs, ...data }))
     }
 
+<<<<<<< HEAD
     function handleSubmit() {
         console.log("submited")
+=======
+    function pushData(data) {
+        //if data exist replace else add
+        //fiter array
+        //  setInputs(values =>({...values, [title]:data}))
+>>>>>>> master
         console.log(inputs)
         console.log(inputAccept)
 
@@ -80,6 +87,12 @@ const Register = () => {
         }
     }
 
+<<<<<<< HEAD
+=======
+    const handleSubmit = () => {
+
+    }
+>>>>>>> master
 
 
 
