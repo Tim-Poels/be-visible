@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import Title from '../ui_comp/Title.js'
 import Checkbox from '../ui_comp/Checkbox.js'
 import cvImage from '../../images/cvImage.png'
+import Axios from 'axios'
+// import { Image } from "cloudinary-react"
 
 const Register = () => {
 
@@ -13,12 +15,12 @@ const Register = () => {
     const [url, setUrl] = useState('')
     const [cvVisibility, setCvVisibility] = useState('hidden')
     const [profileVisibility, setProfileVisibility] = useState('hidden')
-    const [buttonType,setButtonType] = useState('')
+    const [buttonType, setButtonType] = useState('')
     const [incrFiles, setIncrFiles] = useState(0)
 
     const inputFile = useRef()
 
-   
+
     function storeAndUpdate(data) {
         //adding data and update
         setInputs(inputs => ({ ...inputs, ...data }))
@@ -39,17 +41,17 @@ const Register = () => {
         visility(buttonType)
     }
 
-   async function uploadFile(e)  {
+    async function uploadFile(e) {
         let myTarget = e.target.textContent
         if (myTarget.includes('Camera')) {
             console.log('picture')
-            setInputAccept("image/png, image/jpeg")
+            await setInputAccept("image/png, image/jpeg")
             //the useState is taking some time to change the variable
-            autoClickInput()
-            setButtonType('picture')
+            await autoClickInput()
+            await setButtonType('picture')
         } else {
             console.log("cv");
-            setInputAccept("application/pdf")
+            await setInputAccept("application/pdf")
             setTimeout(autoClickInput, 15)
             setButtonType('cv')
         }
@@ -57,12 +59,25 @@ const Register = () => {
 
 
 
-   async function readUploaded() {
+    async function readUploaded() {
         setIncrFiles(incrFiles + 1)
         const img = inputFile.current.files[incrFiles]
-        const obj = URL.createObjectURL(img)
-        setUrl(obj)
-        // return img
+        console.log(img.name)
+        //create The Image locally
+            // const obj = URL.createObjectURL(img)
+        
+        if (img.name.includes("png" || "jpeg" || "jpg")) {
+            const formData = new FormData()
+            formData.append('file', img)
+            formData.append("upload_preset", "gzllmk5l")
+            Axios.post("https://api.cloudinary.com/v1_1/dxq4veqsa/upload", formData)
+                .then((response) => {
+                    console.log(response)
+                    setUrl(response.data.secure_url)
+                    //add to Register OBJECT the link of the picture of the user
+                    storeAndUpdate({pictureURL : response.data.secure_url})
+                })
+        }
     }
 
 
@@ -73,7 +88,7 @@ const Register = () => {
         if (type === "cv") {
             setCvVisibility(!cvVisibility)
         } else {
-                setProfileVisibility(!profileVisibility)
+            setProfileVisibility(!profileVisibility)
         }
 
     }
@@ -102,7 +117,7 @@ const Register = () => {
                         <Title title={"CV"}></Title>
                         <div style={{ display: "flex" }}>
                             <Button width={"80px"} marginTop={"0px"} buttonImage={8} uploadFile={uploadFile}></Button>
-                            <img src={cvImage} style={{  height: "45px", backgroundRepeat: "no-repeat", visibility: cvVisibility }} alt={"cv"} ></img>
+                            <img src={cvImage} style={{ height: "45px", backgroundRepeat: "no-repeat", visibility: cvVisibility }} alt={"cv"} ></img>
                         </div>
                     </TitlePic>
                     <TitlePic>
@@ -110,10 +125,11 @@ const Register = () => {
                         <div style={{ alignSelf: "flex-end", display: "flex", gap: "8px" }}>
                             <Button width={"80px"} marginTop={"0px"} buttonImage={9} uploadFile={uploadFile}></Button>
                             <img src={url} style={{ height: "45px", visibility: profileVisibility }} alt={"profile"}></img>
+                            {/* <Image cloudName="dxq4veqsa" public_id =" "/> */}
                         </div>
                     </TitlePic>
                 </FlexCont>
-                <input type="file" id='file' ref={inputFile} style={{ display: 'none' }} accept={inputAccept} onChange={readUploaded} name="files[]" onInput={onLoadFile}/>
+                <input type="file" id='file' ref={inputFile} style={{ display: 'none' }} accept={inputAccept} onChange={readUploaded} name="files[]" onInput={onLoadFile} />
                 <Input title={"Github"} placeholder={"https://github.com/johndoe01"} icon={5} marginB={"6px"} handleChange={storeAndUpdate}></Input>
                 <Input title={"Linkedin"} placeholder={"https://linkedin.com/johndoe01"} icon={6} marginB={"6px"} handleChange={storeAndUpdate}></Input>
                 <Input title={"Website"} placeholder={"https://www.johndoe01.com"} icon={7} handleChange={storeAndUpdate}></Input>
