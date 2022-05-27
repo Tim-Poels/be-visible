@@ -6,15 +6,16 @@ import Register from "./components/login_reg/Register";
 import LearnerProfilePage from "./Pages/LearnerProfilePage";
 import SearchProfiles from "./components/SearchProfiles/SearchProfiles.js"
 import React, { useState } from 'react';
+import RegisterPage from './Pages/RegisterPage';
 
 
 function App() {
   return (
 
     <div >
-      <Register></Register>
+      <RegisterPage />
       {/* <LearnerProfilePage /> */}
-      <Footer /> 
+
     </div>
 
   );

@@ -1,20 +1,20 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "../components/login-page/login-page.css";
 import Footer from "../components/Footer";
 
-const LoginPage = () => {
+const RegisterPage = () => {
   //code for setting username and password
   const [pwd, setPwd] = useState("");
   const [email, setEmail] = useState("");
-  //use useContext for the global states !!!
-  const [userId, setUserId] = useState("");
-  const [token, setToken] = useState("");
+  //code for setting error messages above the form
+  const errRef = useRef("");
+  const [errMsg, setErrMsg] = useState("");
 
   const [checked, setChecked] = useState(false);
   const handleCheckboxChange = () => {
     setChecked(!checked);
   };
-  const LOGIN_URL = "https://bevisible-backend.herokuapp.com/user/signin";
+  const LOGIN_URL = "https://bevisible-backend.herokuapp.com/user/signup";
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -33,10 +33,7 @@ const LoginPage = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setUserId(data.id);
-        setToken(data.accessToken);
-        //then , navigate to dashboard here
-        //once the router is set up
+        setErrMsg(data.message);
       });
   };
 
@@ -45,15 +42,18 @@ const LoginPage = () => {
       <div className="center column content">
         <h1 className="login-h1">BeVisible</h1>
         <h3 className="login-h3">
-          By signing in, you agree to our{" "}
+          By registering, you agree to our
           <span>Term and privacy of policy</span>
         </h3>
         <div className="link-container">
-          <a className="active" href="#">
-            Login
+          <a href="#">Login</a>
+          <a href="#" className="active">
+            Register
           </a>
-          <a href="#">Register</a>
         </div>
+        <p ref={errRef} id="poppup" className="margin-p">
+          {errMsg}
+        </p>
         <div className="form-container">
           <form onSubmit={handleSubmit}>
             <div className="input-div">
@@ -72,7 +72,7 @@ const LoginPage = () => {
                 onChange={(e) => setPwd(e.target.value)}
                 required
               />
-              <div>
+              {/* <div>
                 <input
                   type="checkbox"
                   name="checkbox"
@@ -80,12 +80,12 @@ const LoginPage = () => {
                   onChange={handleCheckboxChange}
                 />
                 <label htmlFor="checkbox"> Remember me</label>
-              </div>
+              </div> */}
             </div>
 
             <div className="center">
               <button className="login-btn" type="submit">
-                Login
+                Register
               </button>
             </div>
           </form>
@@ -96,4 +96,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

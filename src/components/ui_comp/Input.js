@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 import { useState } from 'react'
-=======
 import React from 'react'
-import { useRef } from 'react'
->>>>>>> master
 import './input.css'
 import styled from 'styled-components'
 import parse from 'html-react-parser'
@@ -15,7 +11,7 @@ const Input = ({ placeholder, title, icon, marginB, type, handleChange }) => {
   if (marginB === undefined) {
     marginB = "4px"
   }
- 
+
 
 
   function updValue(e) {
