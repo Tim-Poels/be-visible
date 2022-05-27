@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import "../components/login-page/login-page.css";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
   //code for setting username and password
@@ -46,10 +47,10 @@ const RegisterPage = () => {
           <span>Term and privacy of policy</span>
         </h3>
         <div className="link-container">
-          <a href="#">Login</a>
-          <a href="#" className="active">
+          <Link to="/">Login</Link>
+          <Link to="register" className="active">
             Register
-          </a>
+          </Link>
         </div>
         <p ref={errRef} id="poppup" className="margin-p">
           {errMsg}

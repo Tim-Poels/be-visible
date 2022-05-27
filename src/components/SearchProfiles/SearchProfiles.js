@@ -1,15 +1,19 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components"
 import { MdPeopleOutline } from "react-icons/md"
 import "./profiles.css"
 import Filter from "./Filter.js"
 import Profiles from "./Profiles.js";
 import profileData from "../../data.js";
+import NavbarMob from "../ui_comp/NavbarMob";
+import { Outlet } from 'react-router-dom';
 
 export default function SearchProfiles() {
-  const [profiles, setProfiles] = useState(profileData);
-  return (
+	const [profiles, setProfiles] = useState(profileData);
+	return (
 		<Container>
+			<Outlet />
+			<NavbarMob />
 			<Header>
 				<TitleContainer>
 					<MdPeopleOutline className="students-icon" />

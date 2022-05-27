@@ -1,5 +1,6 @@
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./navbar.css";
 import logo from "../../images/logo.jpg";
 
@@ -8,7 +9,6 @@ const NavbarMob = () => {
 
   const handleClick = () => {
     setNavbar(!navbar);
-    console.log(navbar);
   };
 
   return (
@@ -29,13 +29,13 @@ const NavbarMob = () => {
           </div>
           <ul>
             <li>
-              <a href="#">Home</a>
+              <Link to="students">Home</Link>
             </li>
             <li>
-              <a href="#">Logout</a>
+              <Link to="/">Logout</Link>
             </li>
             <li>
-              <a href="#">Edit my profile</a>
+              <Link to="edit">Edit my page</Link>
             </li>
           </ul>
         </div>

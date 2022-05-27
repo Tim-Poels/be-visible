@@ -7,17 +7,20 @@ import LearnerProfilePage from "./Pages/LearnerProfilePage";
 import SearchProfiles from "./components/SearchProfiles/SearchProfiles.js"
 import React, { useState } from 'react';
 import RegisterPage from './Pages/RegisterPage';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 
 function App() {
   return (
-
-    <div >
-      {/* <RegisterPage /> */}
-      <LearnerProfilePage />
-
-    </div>
-
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/students" element={<SearchProfiles />}>
+          <Route path="edit" element={<Register />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
