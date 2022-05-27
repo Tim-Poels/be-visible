@@ -8,7 +8,7 @@ import cvImage from '../../images/cvImage.png'
 import Axios from 'axios'
 // import { Image } from "cloudinary-react"
 
-const Register = () => {
+const EditProfile = () => {
 
     const [inputs, setInputs] = useState()
     const [inputAccept, setInputAccept] = useState()
@@ -74,8 +74,8 @@ const Register = () => {
                 .then((response) => {
                     console.log(response)
                     setUrl(response.data.secure_url)
-                    //add to Register OBJECT the link of the picture of the user
-                    storeAndUpdate({ pictureURL: response.data.secure_url })
+                    //add to EditProfile OBJECT the link of the picture of the user
+                    storeAndUpdate({picture : response.data.secure_url})
                 })
         }
     }
@@ -97,19 +97,19 @@ const Register = () => {
     return (
 
         <Container>
-            <MainTitle>Register</MainTitle>
+            <MainTitle>EditProfile</MainTitle>
             <InputCont>
-                <Input title={"First Name"} placeholder={"John"} icon={0} handleChange={storeAndUpdate}></Input>
-                <Input title={"Last Name"} placeholder={"Doe"} icon={1} handleChange={storeAndUpdate}></Input>
-                <Input title={"Email"} placeholder={"johndoe@mail.com"} icon={2} type={"email"} handleChange={storeAndUpdate}></Input>
+                <Input title={"First Name"} placeholder={"John"} icon={0} handleChange={storeAndUpdate} dataName={"name"}></Input>
+                <Input title={"Last Name"} placeholder={"Doe"} icon={1} handleChange={storeAndUpdate} dataName={"lastname"}></Input>
+                {/* <Input title={"Email"} placeholder={"johndoe@mail.com"} icon={2} type={"email"} handleChange={storeAndUpdate} dataName={"socials.email"}></Input>
                 <Input title={"Password"} placeholder={"Password"} icon={3} type={"password"} handleChange={storeAndUpdate}></Input>
-                <Input title={"Confirm Password"} placeholder={"Password"} icon={3} type={"password"} handleChange={storeAndUpdate}></Input>
-                <Input title={"Phone Number"} placeholder={"+32474123456"} icon={4} type={"tel"} handleChange={storeAndUpdate}></Input>
+                <Input title={"Confirm Password"} placeholder={"Password"} icon={3} type={"password"} handleChange={storeAndUpdate}></Input> */}
+                <Input title={"Phone Number"} placeholder={"+32474123456"} icon={4} type={"tel"} handleChange={storeAndUpdate} dataName={"phoneNumber"}></Input>
                 <TitleCont>
                     <Title title={"Back-End / Front-End"} ></Title>
                     <CheckBoxCont>
-                        <Checkbox svg={11} myTitle={"Back-End"} handleChange={storeAndUpdate}></Checkbox>
-                        <Checkbox svg={11} myTitle={"Front-End"} handleChange={storeAndUpdate}></Checkbox>
+                        <Checkbox svg={11} myTitle={"Back-End"} handleChange={storeAndUpdate} dataName={"status.backend"}></Checkbox>
+                        <Checkbox svg={11} myTitle={"Front-End"} handleChange={storeAndUpdate} dataName={"status.frontend"}></Checkbox>
                     </CheckBoxCont>
                 </TitleCont>
                 <FlexCont>
@@ -130,19 +130,18 @@ const Register = () => {
                     </TitlePic>
                 </FlexCont>
                 <input type="file" id='file' ref={inputFile} style={{ display: 'none' }} accept={inputAccept} onChange={readUploaded} name="files[]" onInput={onLoadFile} />
-                <Input title={"Github"} placeholder={"https://github.com/johndoe01"} icon={5} marginB={"6px"} handleChange={storeAndUpdate}></Input>
-                <Input title={"Linkedin"} placeholder={"https://linkedin.com/johndoe01"} icon={6} marginB={"6px"} handleChange={storeAndUpdate}></Input>
-                <Input title={"Website"} placeholder={"https://www.johndoe01.com"} icon={7} handleChange={storeAndUpdate}></Input>
+                <Input title={"Github"} placeholder={"https://github.com/johndoe01"} icon={5} marginB={"6px"} handleChange={storeAndUpdate} dataName={"socials.github"}></Input>
+                <Input title={"Linkedin"} placeholder={"https://linkedin.com/johndoe01"} icon={6} marginB={"6px"} handleChange={storeAndUpdate}dataName={"socials.linkedin"}></Input>
+                <Input title={"Website"} placeholder={"https://www.johndoe01.com"} icon={7} handleChange={storeAndUpdate} dataName={"socials.website"}></Input>
             </InputCont>
-            <Button buttonText={"Register"} width={"318px"} submitForm={handleSubmit}>
+            <Button buttonText={"Edit Profile"} width={"318px"} submitForm={handleSubmit}>
             </Button>
-            {/*  hidden inputFile */}
             <SpaceFooter />
         </Container>
     )
 }
 
-export default Register
+export default EditProfile
 
 const Container = styled.div`
     display: flex;

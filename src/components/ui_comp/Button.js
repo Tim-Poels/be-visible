@@ -10,7 +10,7 @@ const Button = ({ buttonText, buttonImage, width, marginTop, submitForm, uploadF
 
 
   return (
-    <UiBut className='uiBut' style={{ width: width, marginTop: marginTop }} onClick={buttonText === "Register" ? submitForm : uploadFile}>{buttonText}{buttonImage != null ? parse(mySvgArr[buttonImage]) : ''}</UiBut>
+    <UiBut className='uiBut' style={{ width: width, marginTop: marginTop }} onClick={buttonText === "Edit Profile" ? submitForm : uploadFile}>{buttonText}{buttonImage != null ? parse(mySvgArr[buttonImage]) : ''}</UiBut>
   )
 }
 

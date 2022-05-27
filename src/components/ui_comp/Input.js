@@ -1,22 +1,25 @@
-import { useState } from 'react'
-import React from 'react'
+import { useState, useEffect } from 'react'
 import './input.css'
 import styled from 'styled-components'
 import parse from 'html-react-parser'
 import mySvgArr from './svgArr.js'
 
-const Input = ({ placeholder, title, icon, marginB, type, handleChange }) => {
-  const [inputValue, setInputValue] = useState()
+const Input = ({ placeholder, title, icon, marginB, type, handleChange,dataName }) => {
+  const [inputValue, setInputValue] = useState('')
+  
+  useEffect(()=>{
+    console.log(inputValue)
+    handleChange({ [dataName]: inputValue })
+  },[inputValue])
+  
+  
   //logos Github and Linkendin needs an extra margin
   if (marginB === undefined) {
     marginB = "4px"
   }
 
-
-
   function updValue(e) {
     setInputValue(e.target.value)
-    handleChange({ [title]: inputValue })
   }
 
   return (
