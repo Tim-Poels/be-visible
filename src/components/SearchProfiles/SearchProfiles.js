@@ -7,7 +7,7 @@ import Profiles from "./Profiles.js";
 import profileData from "../../data.js";
 
 export default function SearchProfiles() {
-  const [profiles, setProfiles] = useState(profileData);
+  const [profiles, setProfiles] = useState(null);
   return (
 		<Container>
 			<Header>
@@ -18,7 +18,7 @@ export default function SearchProfiles() {
 				<Subtext>Meet the students!</Subtext>
 			</Header>
 			<Filter setProfiles={setProfiles} profiles={profiles} />
-			<Profiles profiles={profiles} />
+			<Profiles setProfiles={setProfiles} profiles={profiles} />
 		</Container>
 	);
 }

@@ -1,20 +1,27 @@
 import react, { useEffect } from "react";
-import placeHolderImg from "../../images/unknown.png"
 import styled from "styled-components";
+import placeholderImg from "../../images/unknown.png"
 
 export default function Profiles(props) {
+	fetchAllProfiles(props);
   let profilesElems = []
+	if (props.profiles == null) {
+		return <Container id="profileContainer">
+			awaiting data
+		</Container>;
+	}
   for (let i = 0; i < props.profiles.data.length; i++) {
-    let profile = props.profiles.data[i];
+    let profile = props.profiles.data[i].profile;
     profilesElems.push(
-			<ProfileContainer key={i} className="quick-fade-in" id={props.profiles.data[i].id}>
+			<ProfileContainer key={i} className="quick-fade-in" id={profile._id}>
 				<Profile>
-					<Img src={placeHolderImg}></Img>
+					{profile.picture === "nopic" && <Img src={placeholderImg}></Img>}
+					{profile.picture !== "nopic" && <Img src={profile.picture}></Img>}
 					<div>
 						<Name>{profile.name}</Name>
-						<Role>{profile.role}</Role>
+						<Role>{profile.title}</Role>
 					</div>
-					<P onClick={() => profileClicked(profile.id, props)}>^</P>
+					<P onClick={() => profileClicked(profile._id, props)}>^</P>
 				</Profile>
 			</ProfileContainer>
 		);
@@ -26,13 +33,35 @@ export default function Profiles(props) {
   )
 }
 
+const fetchAllProfiles = (props) => {
+	if (props.profiles == null) {
+		const LOGIN_URL = "https://bevisible-backend.herokuapp.com/user/all";
+		const options = {
+			method: "GET",
+			mode: "cors",
+			headers: {
+				"x-access-token":
+					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGUyOWRkZDM2ZGM0MGQ1MDAxOWNiZCIsImlhdCI6MTY1MzY0MjA4MiwiZXhwIjoxNjUzNzI4NDgyfQ.qH0gKV2lOkiUy1IxEp373FOb6JwZqcqw3MzSedafg8I",
+			}
+		};
+		fetch(LOGIN_URL, options)
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(JSON.stringify(data));
+				props.setProfiles(data)
+			});
+	}	
+}
+
 
 export const profileClicked = (profileID, props) => {
   let profilesFromComp = document.getElementById("profileContainer").childNodes;
   let profileDiv = "empty"
+	let rightI;
   for (let i = 0; i < props.profiles.data.length; i++) {
-    if (profileID === props.profiles.data[i].id) {
+    if (profileID === props.profiles.data[i].profile._id) {
       profileDiv = profilesFromComp[i];
+			rightI = i
       break;
     }
   }
@@ -44,7 +73,7 @@ export const profileClicked = (profileID, props) => {
 	descriptionDiv.className = "profile-description-div-expand";
 	let descriptionEl = document.createElement("p");
 	descriptionEl.className = "profile-short-desc";
-	descriptionEl.innerText = props.profiles.data[profileID].description;
+	descriptionEl.innerText = props.profiles.data[rightI].profile.about;
 	descriptionDiv.appendChild(descriptionEl);
   let button = document.createElement("button");
 	button.innerText = "Profile";
@@ -67,7 +96,7 @@ export const profileUnClicked = (profileID, props) => {
   let profilesFromComp = document.getElementById("profileContainer").childNodes;
 	let profileDiv = "empty";
 	for (let i = 0; i < props.profiles.data.length; i++) {
-		if (profileID === props.profiles.data[i].id) {
+		if (profileID === props.profiles.data[i].profile._id) {
 			profileDiv = profilesFromComp[i];
 			break;
 		}
