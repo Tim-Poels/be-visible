@@ -21,6 +21,14 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const testurl = "https://bevisible-backend.herokuapp.com/user/all";
+
+    fetch(testurl)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+
     fetch(LOGIN_URL, {
       method: "POST",
       headers: {
