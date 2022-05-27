@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "../components/login-page/login-page.css";
 import Footer from "../components/Footer";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   //code for setting username and password
@@ -9,11 +10,13 @@ const LoginPage = () => {
   //use useContext for the global states !!!
   const [userId, setUserId] = useState("");
   const [token, setToken] = useState("");
-
+  const errRef = useRef("");
+  const [errMsg, setErrMsg] = useState("");
   const [checked, setChecked] = useState(false);
   const handleCheckboxChange = () => {
     setChecked(!checked);
   };
+  const navigate = useNavigate();
   const LOGIN_URL = "https://bevisible-backend.herokuapp.com/user/signin";
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,8 +36,17 @@ const LoginPage = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setUserId(data.id);
-        setToken(data.accessToken);
+        if (data.id && data.accessToken) {
+          setUserId(data.id);
+          setToken(data.accessToken);
+          setErrMsg("Login sucessful");
+          setTimeout(() => {
+            navigate("/students", { replace: true });
+          }, "250");
+        } else {
+          setErrMsg("Login failed");
+        }
+
         //then , navigate to dashboard here
         //once the router is set up
       });
@@ -49,12 +61,15 @@ const LoginPage = () => {
           <span>Term and privacy of policy</span>
         </h3>
         <div className="link-container">
-          <a className="active" href="#">
+          <Link to="/" className="active">
             Login
-          </a>
-          <a href="#">Register</a>
+          </Link>
+          <Link to="register">Register</Link>
         </div>
         <div className="form-container">
+          <p ref={errRef} id="poppup" className="margin-p">
+            {errMsg}
+          </p>
           <form onSubmit={handleSubmit}>
             <div className="input-div">
               <input
