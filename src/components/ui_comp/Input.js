@@ -17,8 +17,8 @@ const Input = ({ placeholder, title, icon, marginB, type, handleChange,dataName 
   if (marginB === undefined) {
     marginB = "4px"
   }
- 
-   function updValue(e) {
+
+  function updValue(e) {
     setInputValue(e.target.value)
   }
 
@@ -28,7 +28,7 @@ const Input = ({ placeholder, title, icon, marginB, type, handleChange,dataName 
       <div className="label-float">
         <FlexCont>
           <Icon style={{ marginBottom: marginB }} >{icon != null ? parse(mySvgArr[icon]) : ''}</Icon>
-          <input type={type != null ? type : "text"} placeholder={title} onChange={(e)=>setInputValue(e.target.value)} value={inputValue} />
+          <input type={type != null ? type : "text"} placeholder={title} onChange={updValue} value={inputValue} />
           <label>{placeholder}</label>
         </FlexCont>
       </div>

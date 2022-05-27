@@ -64,8 +64,8 @@ const EditProfile = () => {
         const img = inputFile.current.files[incrFiles]
         console.log(img.name)
         //create The Image locally
-            // const obj = URL.createObjectURL(img)
-        
+        // const obj = URL.createObjectURL(img)
+
         if (img.name.includes("png" || "jpeg" || "jpg")) {
             const formData = new FormData()
             formData.append('file', img)
