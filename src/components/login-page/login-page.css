@@ -15,6 +15,9 @@
   color: #606060;
   font-size: 1em;
 }
+.input-div {
+  display: flex;
+}
 .center {
   display: flex;
   align-items: center;
