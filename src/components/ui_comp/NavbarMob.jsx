@@ -32,7 +32,10 @@ const NavbarMob = () => {
               <a href="#">Home</a>
             </li>
             <li>
-              <a href="#">Login</a>
+              <a href="#">Logout</a>
+            </li>
+            <li>
+              <a href="#">Edit my profile</a>
             </li>
           </ul>
         </div>

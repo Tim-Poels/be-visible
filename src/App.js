@@ -13,8 +13,8 @@ function App() {
   return (
 
     <div >
-      <RegisterPage />
-      {/* <LearnerProfilePage /> */}
+      {/* <RegisterPage /> */}
+      <LearnerProfilePage />
 
     </div>
 
