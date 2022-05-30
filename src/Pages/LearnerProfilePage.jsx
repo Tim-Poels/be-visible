@@ -16,11 +16,43 @@ import ContactPhone from "../components/learner-profile/ContactPhone";
 import ContactEmail from "../components/learner-profile/ContactEmail";
 import Footer from "../components/Footer";
 import NavbarMob from "../components/ui_comp/NavbarMob";
+import { userContext } from "../context";
+import { useContext, useState } from "react";
 
 const LearnerProfile = () => {
+  /*
+  const { userId, token, } = useContext(userContext);
+  console.log("testing states " + token);
+  */
+  const [profile, setProfile] = useState(null);
+
   React.useEffect(() => {
     AOS.init();
     AOS.refresh();
+
+    const LOGIN_URL = "https://bevisible-backend.herokuapp.com/user/profile";
+
+    const urlArray = window.location.href.split("/");
+    const id = urlArray[urlArray.length - 1];
+    console.log(id);
+    fetch(LOGIN_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTQ3YzRmOTkwNmQ3MmY4MDZmZTg2MCIsImlhdCI6MTY1Mzg5ODQ2NywiZXhwIjoxNjUzOTg0ODY3fQ.FK8WGP5uZoaSR5L7YmQjz1buOpO9HILIkI9lbJSs75Q",
+      },
+      mode: "cors",
+      body: JSON.stringify({
+        id: id,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        //handle errors here later
+        setProfile(data);
+        console.log(data);
+      });
   }, []);
 
   const heroStyle = {
@@ -29,18 +61,19 @@ const LearnerProfile = () => {
     justifyContent: "center",
     alignItems: "center",
   };
-
+  if (profile === null) {
+    return <div>Still loading...</div>;
+  }
   return (
     <div className="body-container">
       <Section primary style={heroStyle}>
         <NavbarMob />
         <Header
           id="hero"
-          name={"Augustus Granpa"}
-          dev={"Frontend Developer"}
-          bio={
-            "Little description of yourself here. Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit magni debitis consequatur inventore"
-          }
+          name={profile.data.firstname + " " + profile.data.lastname}
+          dev={profile.data.title}
+          bio={profile.data.about}
+          img={profile.data.picture}
         />
       </Section>
 

@@ -16,7 +16,9 @@ export default function SearchProfiles() {
 	const [profiles, setProfiles] = useState(null);
 	//console log for testing
 	console.log("test user id " + userId + "test user token " + token)
+
   return (
+
 		<Container>
 			<Outlet />
 			<NavbarMob />
