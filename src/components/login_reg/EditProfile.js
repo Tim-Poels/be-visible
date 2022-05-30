@@ -124,7 +124,7 @@ const EditProfile = () => {
         //create The Image locally
         // const obj = URL.createObjectURL(img)
 
-        if (img.name.includes("png") || ("jpeg") || ("jpg")) {
+        if (img.name.includes("png") || img.name.includes("jpeg") || img.name.includes("jpg")) {
             const formData = new FormData()
             formData.append('file', img)
             formData.append("upload_preset", "gzllmk5l")
@@ -144,7 +144,7 @@ const EditProfile = () => {
                 headers: {
                     'Authorization': 'Bearer pdf_live_2vvVa1YPciVwfM4vhy9q437mjNvbRaxuMoVOUB0RJ01'
                 },
-                mode: "no-  cors",
+                mode: "no-cors",
 
             }
            
