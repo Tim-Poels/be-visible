@@ -95,6 +95,9 @@ export const profileClicked = (profileID, props) => {
   let button = document.createElement("button");
 	button.innerText = "Profile";
 	button.className = "profile-button-expand";
+	button.addEventListener("click", () => {
+		window.location.href = `/students/${profileID}`;
+	})
 	descriptionDiv.appendChild(button);
 	profileDiv.appendChild(descriptionDiv);
   let arrow = profileDiv.childNodes[0].childNodes[2];
