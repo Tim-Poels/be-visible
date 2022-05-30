@@ -15,7 +15,12 @@ export default function SearchProfiles() {
 	const [profiles, setProfiles] = useState(profileData);
 	//console log for testing
 	console.log("test user id " + userId + "test user token " + token)
-	return (
+
+
+  const [profiles, setProfiles] = useState(null);
+		const [redirect, setRedirect] = useState(false);
+  return (
+
 		<Container>
 			<Outlet />
 			<NavbarMob />
@@ -26,8 +31,18 @@ export default function SearchProfiles() {
 				</TitleContainer>
 				<Subtext>Meet the students!</Subtext>
 			</Header>
-			<Filter setProfiles={setProfiles} profiles={profiles} />
-			<Profiles profiles={profiles} />
+			<Filter
+				setProfiles={setProfiles}
+				profiles={profiles}
+				redirect={redirect}
+				setRedirect={setRedirect}
+			/>
+			<Profiles
+				setProfiles={setProfiles}
+				profiles={profiles}
+				redirect={redirect}
+				setRedirect={setRedirect}
+			/>
 		</Container>
 	);
 }

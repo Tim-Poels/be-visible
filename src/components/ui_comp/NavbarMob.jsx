@@ -29,13 +29,13 @@ const NavbarMob = () => {
           </div>
           <ul>
             <li>
-              <Link to="students">Home</Link>
+              <Link to="/students">Home</Link>
             </li>
             <li>
               <Link to="/">Logout</Link>
             </li>
             <li>
-              <Link to="edit">Edit my page</Link>
+              <Link to="/edit">Edit my page</Link>
             </li>
           </ul>
         </div>

@@ -22,7 +22,6 @@
   height: auto;
   background-color: lightblue;
   padding: 10px;
-  margin: -10x;
   margin-top: 10px;
   margin-bottom: 10px;
   border-radius: 15px;
@@ -56,7 +55,19 @@
   font-weight: bold;
 }
 
+@keyframes arrow-up {
+  0% {
+	margin-right: 20px;
+	transform: scale(1, 0.5) rotate(0.5turn);
+  }
+  100% {
+	margin-right: 10px;
+	transform: scale(1, 0.5) rotate(0turn);
+  }
+}
+
 .arrow-up {
+  animation: arrow-up 0.5s normal;
   font-size: 1.5rem;
 	margin-right: 10px;
 	margin-left: auto;
@@ -66,7 +77,23 @@
 	transform: scale(1, 0.5) rotate(0turn);
 }
 
+@keyframes arrow-down {
+  0% {
+	margin-right: 10px;
+	transform: scale(1, 0.5) rotate(0turn);
+  }
+  50% {
+    margin-right: 10px;
+	transform: scale(1, 0.5) rotate(0turn);
+  }
+  100% {
+	margin-right: 20px;
+	transform: scale(1, 0.5) rotate(0.5turn);
+  }
+}
+
 .arrow-down {
+  animation: arrow-down 0.6s normal;
   font-size: 1.5rem;
 	margin-right: 20px;
 	margin-left: auto;
@@ -74,4 +101,86 @@
 	font-family: raleway;
 	font-weight: bolder;
 	transform: scale(1, 0.5) rotate(0.5turn);
+}
+
+@keyframes start-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.quick-fade-in {
+  animation: start-fade-in 0.5s normal;
+  display: flex;
+  height: 8vh;
+  flex-direction: column;
+  margin-top: 2.5px;
+  margin-bottom: 2.5px
+}
+
+@keyframes extend-out {
+  0% {
+    background-color: white;
+    box-shadow: 2px 2px 2px 2px white;
+    margin-top: 2.5px;
+    margin-bottom: 2.5px;
+    padding: 0;
+    border-radius: 0;
+  }
+  100% {
+    background-color: lightblue;
+    box-shadow: 2px 2px 2px 2px rgb(204, 237, 248);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 15px;
+  }
+}
+
+.extend-out-before {
+  animation: extend-out 0.5s normal;
+  background-color: white;
+  box-shadow: 2px 2px 2px 2px white;
+  margin-top: 2.5px;
+  margin-bottom: 2.5px;
+  padding: 0;
+}
+
+@keyframes fade-out {
+  0% {
+    background-color: lightblue;
+    box-shadow: 2px 2px 2px 2px rgb(204, 237, 248);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  100% {
+    background-color: white;
+    box-shadow: 2px 2px 2px 2px white;
+    margin-top: 2.5px;
+    margin-bottom: 2.5px;
+    padding: 0;
+  }
+}
+
+.quick-fade-out {
+  animation: fade-out 0.45s normal;
+  height: auto;
+  background-color: lightblue;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  box-shadow: 2px 2px 2px 2px rgb(204, 237, 248);
+}
+
+.after-quick-fade-out {
+  display: flex;
+  height: 8vh;
+  flex-direction: column;
+  margin-top: 2.5px;
+  margin-bottom: 2.5px
 }

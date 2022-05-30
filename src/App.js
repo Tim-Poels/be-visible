@@ -14,6 +14,7 @@ import { NewProvider } from './context'
 function App() {
 
   return (
+
     <NewProvider>
       <BrowserRouter>
         <Routes>
@@ -26,6 +27,7 @@ function App() {
       </BrowserRouter>
     </NewProvider>
   );
+
 }
 
 export default App;
