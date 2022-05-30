@@ -12,12 +12,9 @@ import { Outlet } from 'react-router-dom';
 export default function SearchProfiles() {
 	//useContext for user id and token
 	const { userId, setUserId, token, setToken } = useContext(userContext);
-	const [profiles, setProfiles] = useState(profileData);
+	const [profiles, setProfiles] = useState(null);
 	//console log for testing
 	console.log("test user id " + userId + "test user token " + token)
-
-
-  const [profiles, setProfiles] = useState(null);
   return (
 
 		<Container>
