@@ -7,6 +7,7 @@ import LearnerProfilePage from "./Pages/LearnerProfilePage";
 import SearchProfiles from "./components/SearchProfiles/SearchProfiles.js"
 import React, { useState } from 'react';
 import RegisterPage from './Pages/RegisterPage';
+import Register from "./components/login_reg/EditProfile"
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 
