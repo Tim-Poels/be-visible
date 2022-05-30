@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { userContext } from "../../context";
 import styled from "styled-components"
 import { MdPeopleOutline } from "react-icons/md"
 import "./profiles.css"
@@ -9,8 +10,13 @@ import NavbarMob from "../ui_comp/NavbarMob";
 import { Outlet } from 'react-router-dom';
 
 export default function SearchProfiles() {
-  const [profiles, setProfiles] = useState(null);
+	//useContext for user id and token
+	const { userId, setUserId, token, setToken } = useContext(userContext);
+	const [profiles, setProfiles] = useState(null);
+	//console log for testing
+	console.log("test user id " + userId + "test user token " + token)
   return (
+
 		<Container>
 			<Outlet />
 			<NavbarMob />
@@ -21,8 +27,14 @@ export default function SearchProfiles() {
 				</TitleContainer>
 				<Subtext>Meet the students!</Subtext>
 			</Header>
-			<Filter setProfiles={setProfiles} profiles={profiles} />
-			<Profiles setProfiles={setProfiles} profiles={profiles} />
+			<Filter
+				setProfiles={setProfiles}
+				profiles={profiles}
+			/>
+			<Profiles
+				setProfiles={setProfiles}
+				profiles={profiles}
+			/>
 		</Container>
 	);
 }

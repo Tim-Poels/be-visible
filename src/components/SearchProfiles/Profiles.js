@@ -1,54 +1,71 @@
-import react, { useEffect } from "react";
+import react, { useEffect, useState } from "react";
 import styled from "styled-components";
 import placeholderImg from "../../images/unknown.png"
+import { Navigate } from "react-router-dom";
 
 export default function Profiles(props) {
 	fetchAllProfiles(props);
-  let profilesElems = []
-	if (props.profiles == null) {
-		return <Container id="profileContainer">
+	if (props.profiles === null) {
+		return (
+		<Container id="profileContainer">
 			awaiting data
-		</Container>;
+		</Container>
+		)
 	}
+	let profilesElems = []
   for (let i = 0; i < props.profiles.data.length; i++) {
     let profile = props.profiles.data[i].profile;
-    profilesElems.push(
-			<ProfileContainer key={i} className="quick-fade-in" id={profile._id}>
-				<Profile>
-					{profile.picture === "nopic" && <Img src={placeholderImg}></Img>}
-					{profile.picture !== "nopic" && <Img src={profile.picture}></Img>}
-					<div>
-						<Name>{profile.name}</Name>
-						<Role>{profile.title}</Role>
-					</div>
-					<P onClick={() => profileClicked(profile._id, props)}>^</P>
-				</Profile>
-			</ProfileContainer>
-		);
+		if (profile !== null) {
+			let whatImg;
+			if (profile.picture.includes("png") || profile.picture.includes("jpeg") || profile.picture.includes("jpeg")) {
+				whatImg = <Img src={profile.picture}></Img>;
+			}
+			else {
+				whatImg = <Img src={placeholderImg}></Img>;
+			}
+				profilesElems.push(
+					<ProfileContainer key={i} className="quick-fade-in" id={profile._id}>
+						<Profile>
+							{whatImg}
+							<div>
+								<Name>
+									{profile.firstname !== undefined && profile.firstname + " "}
+									{profile.lastname !== undefined && profile.lastname + " "}
+								</Name>
+								{profile.title !== undefined && (
+									<Role>{profile.title.frontend}</Role>
+								)}
+							</div>
+							<P onClick={() => profileClicked(profile._id, props)}>^</P>
+						</Profile>
+					</ProfileContainer>
+				);
+		}
   }
-  return (
+	return (
     <Container id="profileContainer">
       {profilesElems}  
-    </Container>
+  	</Container>
   )
+
 }
 
 const fetchAllProfiles = (props) => {
-	if (props.profiles == null) {
+	if (props.profiles === null) {
 		const LOGIN_URL = "https://bevisible-backend.herokuapp.com/user/all";
 		const options = {
 			method: "GET",
 			mode: "cors",
 			headers: {
 				"x-access-token":
-					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGUyOWRkZDM2ZGM0MGQ1MDAxOWNiZCIsImlhdCI6MTY1MzY0MjA4MiwiZXhwIjoxNjUzNzI4NDgyfQ.qH0gKV2lOkiUy1IxEp373FOb6JwZqcqw3MzSedafg8I",
-			}
+					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTQ3YzRmOTkwNmQ3MmY4MDZmZTg2MCIsImlhdCI6MTY1Mzg5ODQ2NywiZXhwIjoxNjUzOTg0ODY3fQ.FK8WGP5uZoaSR5L7YmQjz1buOpO9HILIkI9lbJSs75Q",
+			},
 		};
 		fetch(LOGIN_URL, options)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(JSON.stringify(data));
-				props.setProfiles(data)
+				console.log(data);
+				props.setProfiles(data);
 			});
 	}	
 }
@@ -78,6 +95,9 @@ export const profileClicked = (profileID, props) => {
   let button = document.createElement("button");
 	button.innerText = "Profile";
 	button.className = "profile-button-expand";
+	button.addEventListener("click", () => {
+		window.location.href = `/students/${profileID}`;
+	})
 	descriptionDiv.appendChild(button);
 	profileDiv.appendChild(descriptionDiv);
   let arrow = profileDiv.childNodes[0].childNodes[2];
@@ -92,7 +112,7 @@ export const profileClicked = (profileID, props) => {
 	}, 500);	
 }
 
-export const profileUnClicked = (profileID, props) => {
+export const profileUnClicked = (profileID, props, direct) => {
   let profilesFromComp = document.getElementById("profileContainer").childNodes;
 	let profileDiv = "empty";
 	for (let i = 0; i < props.profiles.data.length; i++) {
@@ -116,7 +136,7 @@ export const profileUnClicked = (profileID, props) => {
     descriptionDiv.remove();
 		profileDiv.className = "after-quick-fade-out"
     arrow.addEventListener("click", function clicked() {
-			profileClicked(profileID, props);
+			profileClicked(profileID, props, direct);
 		});
 	}, 450);	
 	};
