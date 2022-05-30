@@ -45,32 +45,32 @@ const EditProfile = () => {
         //chang62860fa0210230064d61b8c0e coach to email after you can register with an email
         
         
-        picture:"blabla",
-        firstname:"blabla",
-        lastname:"blabla",
+        picture: inputs.picture,
+        firstname: inputs.firstname,
+        lastname: inputs.lastname,
         title: {
-            frontend:"blabla",
-            backend:"blabla"
+            frontend: inputs.frontend,
+            backend:inputs.backend
         },
-        about:"blabla",
-        status:"blabla",
-        tags:"blabla",
+        about:"",
+        status:"",
+        tags:"",
         work: {
-            position:"blabla",
-            duration:"blabla"
+            position:"",
+            duration:""
         },
         education: {
-            school:"blabla",
-            graduation:"blabla"
+            school:"",
+            graduation:""
         },
-        interests:"blabla",
-        cvlink:"blabla",
+        interests:"",
+        cvlink:"",
        // phonenumber:"blabla",
         socials: {
-            email:"blabla",
-            github:"blabla",
-            linkedin:"blabla",
-            website:"blabla"
+            email:"",
+            github:inputs.github,
+            linkedin:inputs.linkedin,
+            website:inputs.website
         },
             id: "628b996dd9e4bd7ad3c2cdcd"
         
@@ -136,12 +136,13 @@ const EditProfile = () => {
         }else{
             const formData = new FormData()
             formData.append('document', img)
+            console.log(formData)
             const requestOptions = {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer pdf_live_2vvVa1YPciVwfM4vhy9q437mjNvbRaxuMoVOUB0RJ01'
                 },
-                mode: "cors",
+                mode: "no-  cors",
 
             }
            
@@ -173,14 +174,14 @@ const EditProfile = () => {
         <Container>
             <MainTitle>EditProfile</MainTitle>
             <InputCont>
-                <Input title={"First Name"} placeholder={"John"} icon={0} handleChange={storeAndUpdate} dataName={"name"}></Input>
+                <Input title={"First Name"} placeholder={"John"} icon={0} handleChange={storeAndUpdate} dataName={"firstname"}></Input>
                 <Input title={"Last Name"} placeholder={"Doe"} icon={1} handleChange={storeAndUpdate} dataName={"lastname"}></Input>
                 <Input title={"Phone Number"} placeholder={"+32474123456"} icon={4} handleChange={storeAndUpdate} dataName={"phoneNumber"}></Input>
                 <TitleCont>
                     <Title title={"Back-End / Front-End"} ></Title>
                     <CheckBoxCont>
-                        <Checkbox svg={11} myTitle={"Back-End"} handleChange={storeAndUpdate} dataName={"status.backend"}></Checkbox>
-                        <Checkbox svg={11} myTitle={"Front-End"} handleChange={storeAndUpdate} dataName={"status.frontend"}></Checkbox>
+                        <Checkbox svg={11} myTitle={"Back-End"} handleChange={storeAndUpdate} dataName={"backend"}></Checkbox>
+                        <Checkbox svg={11} myTitle={"Front-End"} handleChange={storeAndUpdate} dataName={"frontend"}></Checkbox>
                     </CheckBoxCont>
                 </TitleCont>
                 <FlexCont>
@@ -201,9 +202,9 @@ const EditProfile = () => {
                     </TitlePic>
                 </FlexCont>
                 <input type="file" id='file' ref={inputFile} style={{ display: 'none' }} accept={inputAccept} onChange={readUploaded} name="files[]" onInput={onLoadFile} />
-                <Input title={"Github"} placeholder={"https://github.com/johndoe01"} icon={5} marginB={"6px"} handleChange={storeAndUpdate} dataName={"socials.github"}></Input>
-                <Input title={"Linkedin"} placeholder={"https://linkedin.com/johndoe01"} icon={6} marginB={"6px"} handleChange={storeAndUpdate}dataName={"socials.linkedin"}></Input>
-                <Input title={"Website"} placeholder={"https://www.johndoe01.com"} icon={7} handleChange={storeAndUpdate} dataName={"socials.website"}></Input>
+                <Input title={"Github"} placeholder={"https://github.com/johndoe01"} icon={5} marginB={"6px"} handleChange={storeAndUpdate} dataName={"github"}></Input>
+                <Input title={"Linkedin"} placeholder={"https://linkedin.com/johndoe01"} icon={6} marginB={"6px"} handleChange={storeAndUpdate}dataName={"linkedin"}></Input>
+                <Input title={"Website"} placeholder={"https://www.johndoe01.com"} icon={7} handleChange={storeAndUpdate} dataName={"website"}></Input>
             </InputCont>
             <Button buttonText={"Edit Profile"} width={"318px"} submitForm={handleSubmit}>
             </Button>
