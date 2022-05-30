@@ -16,9 +16,8 @@ const EditProfile = () => {
     const [cvVisibility, setCvVisibility] = useState('hidden')
     const [profileVisibility, setProfileVisibility] = useState('hidden')
     const [buttonType, setButtonType] = useState('')
-    const [incrFiles, setIncrFiles] = useState(0)
-
     const inputFile = useRef()
+    const incrFiles = 0
 
 
     function storeAndUpdate(data) {
@@ -30,6 +29,61 @@ const EditProfile = () => {
         console.log("submited")
         console.log(inputs)
         console.log(inputAccept)
+        // /user/profile/new
+        const EDIT_P_URL = "https://bevisible-backend.herokuapp.com/user/profile/edit";
+
+    fetch(EDIT_P_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token":
+					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTQ5OTUyYzU5OTQ4N2IyMzc5ZmMxMyIsImlhdCI6MTY1MzkwNTc2MywiZXhwIjoxNjUzOTkyMTYzfQ.J4QO7JSuoDETfIxadhNni24zeOhQ1Mjh5xnikZL4O-c"
+                
+      },
+      mode: "cors",
+      body: JSON.stringify({
+        //chang62860fa0210230064d61b8c0e coach to email after you can register with an email
+        
+        
+        picture:"blabla",
+        firstname:"blabla",
+        lastname:"blabla",
+        title: {
+            frontend:"blabla",
+            backend:"blabla"
+        },
+        about:"blabla",
+        status:"blabla",
+        tags:"blabla",
+        work: {
+            position:"blabla",
+            duration:"blabla"
+        },
+        education: {
+            school:"blabla",
+            graduation:"blabla"
+        },
+        interests:"blabla",
+        cvlink:"blabla",
+       // phonenumber:"blabla",
+        socials: {
+            email:"blabla",
+            github:"blabla",
+            linkedin:"blabla",
+            website:"blabla"
+        },
+            id: "628b996dd9e4bd7ad3c2cdcd"
+        
+
+        // inputs
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // setErrMsg(data.message);
+      });
+  
 
     }
 
@@ -60,8 +114,10 @@ const EditProfile = () => {
 
 
     async function readUploaded() {
-        setIncrFiles(incrFiles + 1)
+
         const img = inputFile.current.files[incrFiles]
+        // setIncrFiles(incrFiles + 1)
+        console.log(incrFiles);
         console.log(img.name)
         //create The Image locally
         // const obj = URL.createObjectURL(img)
@@ -70,13 +126,31 @@ const EditProfile = () => {
             const formData = new FormData()
             formData.append('file', img)
             formData.append("upload_preset", "gzllmk5l")
-            Axios.post("https://api.cloudinary.com/v1_1/dxq4veqsa/upload", formData)
+            Axios.post("https://api.cloudinary.com/v1_1/dxq4veqsa/upload", formData )
                 .then((response) => {
                     console.log(response)
                     setUrl(response.data.secure_url)
                     //add to EditProfile OBJECT the link of the picture of the user
                     storeAndUpdate({picture : response.data.secure_url})
                 })
+        }else{
+            const formData = new FormData()
+            formData.append('document', img)
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer pdf_live_2vvVa1YPciVwfM4vhy9q437mjNvbRaxuMoVOUB0RJ01'
+                },
+                mode: "cors",
+
+            }
+           
+            Axios.post('https://api.pspdfkit.com/build', formData, requestOptions)
+              
+            .then((response) => {
+                console.log(response)
+            })
+
         }
     }
 
@@ -101,10 +175,7 @@ const EditProfile = () => {
             <InputCont>
                 <Input title={"First Name"} placeholder={"John"} icon={0} handleChange={storeAndUpdate} dataName={"name"}></Input>
                 <Input title={"Last Name"} placeholder={"Doe"} icon={1} handleChange={storeAndUpdate} dataName={"lastname"}></Input>
-                {/* <Input title={"Email"} placeholder={"johndoe@mail.com"} icon={2} type={"email"} handleChange={storeAndUpdate} dataName={"socials.email"}></Input>
-                <Input title={"Password"} placeholder={"Password"} icon={3} type={"password"} handleChange={storeAndUpdate}></Input>
-                <Input title={"Confirm Password"} placeholder={"Password"} icon={3} type={"password"} handleChange={storeAndUpdate}></Input> */}
-                <Input title={"Phone Number"} placeholder={"+32474123456"} icon={4} type={"tel"} handleChange={storeAndUpdate} dataName={"phoneNumber"}></Input>
+                <Input title={"Phone Number"} placeholder={"+32474123456"} icon={4} handleChange={storeAndUpdate} dataName={"phoneNumber"}></Input>
                 <TitleCont>
                     <Title title={"Back-End / Front-End"} ></Title>
                     <CheckBoxCont>
