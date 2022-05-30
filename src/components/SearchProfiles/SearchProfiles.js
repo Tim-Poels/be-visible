@@ -11,11 +11,13 @@ import { Outlet } from 'react-router-dom';
 
 export default function SearchProfiles() {
 	//useContext for user id and token
+		const [switchPage, setSwitchPage] = useState(false);
 	const { userId, setUserId, token, setToken } = useContext(userContext);
 	const [profiles, setProfiles] = useState(null);
 	//console log for testing
 	console.log("test user id " + userId + "test user token " + token)
-	return (
+
+  return (
 
 		<Container>
 			<Outlet />
@@ -30,10 +32,14 @@ export default function SearchProfiles() {
 			<Filter
 				setProfiles={setProfiles}
 				profiles={profiles}
+				switchPage={switchPage}
+				setSwitchPage={setSwitchPage}
 			/>
 			<Profiles
 				setProfiles={setProfiles}
 				profiles={profiles}
+				switchPage={switchPage}
+				setSwitchPage={setSwitchPage}
 			/>
 		</Container>
 	);

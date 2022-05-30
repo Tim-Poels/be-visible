@@ -35,57 +35,59 @@ const EditProfile = () => {
         // /user/profile/new
         const EDIT_P_URL = "https://bevisible-backend.herokuapp.com/user/profile/edit";
 
-        fetch(EDIT_P_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "x-access-token":
-                    token
 
-            },
-            mode: "cors",
-            body: JSON.stringify({
-                //chang62860fa0210230064d61b8c0e coach to email after you can register with an email
+    fetch(EDIT_P_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token":
+					token ? token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTQ5OTUyYzU5OTQ4N2IyMzc5ZmMxMyIsImlhdCI6MTY1MzkwNTc2MywiZXhwIjoxNjUzOTkyMTYzfQ.J4QO7JSuoDETfIxadhNni24zeOhQ1Mjh5xnikZL4O-c"
+                    
+      },
+      mode: "cors",
+      body: JSON.stringify({
+        //chang62860fa0210230064d61b8c0e coach to email after you can register with an email
+        
+        
+        picture: inputs.picture,
+        firstname: inputs.firstname,
+        lastname: inputs.lastname,
+        title: {
+            frontend: inputs.frontend,
+            backend:inputs.backend
+        },
+        about:"",
+        status:"",
+        tags:"",
+        work: {
+            position:"",
+            duration:""
+        },
+        education: {
+            school:"",
+            graduation:""
+        },
+        interests:"",
+        cvlink:"",
+       // phonenumber:"blabla",
+        socials: {
+            email:"",
+            github:inputs.github,
+            linkedin:inputs.linkedin,
+            website:inputs.website
+        },
+            id: userId
+        
 
-
-                picture: inputs.picture,
-                firstname: inputs.firstname,
-                lastname: inputs.lastname,
-                title: {
-                    frontend: inputs.frontend,
-                    backend: inputs.backend
-                },
-                about: "",
-                status: "",
-                tags: "",
-                work: {
-                    position: "",
-                    duration: ""
-                },
-                education: {
-                    school: "",
-                    graduation: ""
-                },
-                interests: "",
-                cvlink: "",
-                // phonenumber:"blabla",
-                socials: {
-                    email: "",
-                    github: inputs.github,
-                    linkedin: inputs.linkedin,
-                    website: inputs.website
-                },
-                id: userId
-
-
-                // inputs
-            }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                // setErrMsg(data.message);
-            });
+        // inputs
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // setErrMsg(data.message);
+      });
+  
 
 
     }
@@ -102,7 +104,7 @@ const EditProfile = () => {
         let myTarget = e.target.textContent
         if (myTarget.includes('Camera')) {
             console.log('picture')
-            await setInputAccept("image/png, image/jpeg")
+            await setInputAccept("image/png, image/jpeg, image/jpg")
             //the useState is taking some time to change the variable
             await autoClickInput()
             await setButtonType('picture')
@@ -125,7 +127,7 @@ const EditProfile = () => {
         //create The Image locally
         // const obj = URL.createObjectURL(img)
 
-        if (img.name.includes("png" || "jpeg" || "jpg")) {
+        if (img.name.includes("png") || ("jpeg") || ("jpg")) {
             const formData = new FormData()
             formData.append('file', img)
             formData.append("upload_preset", "gzllmk5l")

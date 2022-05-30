@@ -1,9 +1,14 @@
 import react, { useEffect, useState } from "react";
 import styled from "styled-components";
 import placeholderImg from "../../images/unknown.png"
-import { Navigate } from "react-router-dom";
+import { useNavigate, Redirect, browserHistory } from "react-router-dom";
 
 export default function Profiles(props) {
+	let navigate = useNavigate();
+	if (props.switchPage !== false) {
+		//Navigate(`/students/${props.switchPage}`);	
+		navigate(`/students/${props.switchPage}`, { replace: true });
+	}
 	fetchAllProfiles(props);
 	if (props.profiles === null) {
 		return (
@@ -33,10 +38,13 @@ export default function Profiles(props) {
 									{profile.lastname !== undefined && profile.lastname + " "}
 								</Name>
 								{profile.title !== undefined && (
-									<Role>{profile.title.frontend}</Role>
+									<Role>{profile.title}</Role>
 								)}
 							</div>
-							<P onClick={() => profileClicked(props.profiles.data[i]._id, props)}>
+							<P
+								onClick={() =>
+									profileClicked(props.profiles.data[i]._id, props)
+								}>
 								^
 							</P>
 						</Profile>
@@ -98,7 +106,8 @@ export const profileClicked = (profileID, props) => {
 	button.innerText = "Profile";
 	button.className = "profile-button-expand";
 	button.addEventListener("click", () => {
-		window.location.href = `/students/${profileID}`;
+		props.setSwitchPage(profileID)
+		//window.location.href = `/students/${profileID}`;
 	})
 	descriptionDiv.appendChild(button);
 	profileDiv.appendChild(descriptionDiv);
