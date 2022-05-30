@@ -1,20 +1,23 @@
 * {
   font-family: "Raleway", sans-serif;
 }
-
-h1 {
+.login-h1 {
   align-self: center;
   font-weight: 500;
   font-size: 50px;
   margin-top: 2rem;
 }
-h3 {
+.login-h3 {
   margin: 1rem 3rem 1rem 3rem;
   font-family: "Roboto", sans-serif;
   text-align: center;
   font-weight: 400;
   color: #606060;
   font-size: 1em;
+}
+.input-div {
+  display: flex;
+  flex-direction: column;
 }
 .center {
   display: flex;
@@ -36,8 +39,8 @@ span {
   justify-content: space-around;
 }
 .form-container {
-  margin-top: 3rem;
-  margin-bottom: 10rem;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
 }
 a {
   color: #606060;

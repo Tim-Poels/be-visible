@@ -6,7 +6,7 @@ const Header = (props) => {
     <div className="header">
       <img src={ProfilePic} alt="Profile Image" />
       <h1>{props.name}</h1>
-      <h3>{props.dev}</h3>
+      <h3 className="learner-h3">{props.dev}</h3>
       <div className="social">
         {/* Need to be ahrefs later */}
         <FaGithub />

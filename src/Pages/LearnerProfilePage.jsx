@@ -1,12 +1,11 @@
-/*
 import React from "react";
-import "./learner-profile-style.css";
+import "../components/learner-profile/learner-profile-style.css";
 import styled from "styled-components";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-import portfolioImg from "./test-img/portfolio-img.JPG";
-import theaterapp from "./test-img/theaterapp.jpg";
+import portfolioImg from "../components/learner-profile/test-img/portfolio-img.JPG";
+import theaterapp from "../components/learner-profile/test-img/theaterapp.jpg";
 
 import Header from "../components/learner-profile/Header";
 import Resume from "../components/learner-profile/Resume";
@@ -15,6 +14,8 @@ import Portfolio from "../components/learner-profile/Portfolio";
 import Certifications from "../components/learner-profile/Certifications";
 import ContactPhone from "../components/learner-profile/ContactPhone";
 import ContactEmail from "../components/learner-profile/ContactEmail";
+import Footer from "../components/Footer";
+import NavbarMob from "../components/ui_comp/NavbarMob";
 
 const LearnerProfile = () => {
   React.useEffect(() => {
@@ -32,7 +33,9 @@ const LearnerProfile = () => {
   return (
     <div className="body-container">
       <Section primary style={heroStyle}>
+        <NavbarMob />
         <Header
+          id="hero"
           name={"Augustus Granpa"}
           dev={"Frontend Developer"}
           bio={
@@ -42,7 +45,7 @@ const LearnerProfile = () => {
       </Section>
 
       <Section>
-        <h2>Professional experience</h2>
+        <h2 className="dashboard-h2">Professional experience</h2>
         <Resume location={"Brussel"} title={"Graphic Designer"} />
         <Resume location={"Riga"} title={"Teacher"} />
       </Section>
@@ -68,11 +71,11 @@ const LearnerProfile = () => {
 
       <Section>
         <h2>Contact</h2>
-        {/* Can make this a single component and pass icon as a prop? *//*}
-        
+
         <ContactPhone />
         <ContactEmail />
       </Section>
+      <Footer position={"sticky"} />
     </div>
   );
 };
@@ -83,4 +86,3 @@ const Section = styled.div`
 `;
 
 export default LearnerProfile;
-*/
