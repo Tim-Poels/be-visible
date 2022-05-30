@@ -36,7 +36,9 @@ export default function Profiles(props) {
 									<Role>{profile.title.frontend}</Role>
 								)}
 							</div>
-							<P onClick={() => profileClicked(profile._id, props)}>^</P>
+							<P onClick={() => profileClicked(props.profiles.data[i]._id, props)}>
+								^
+							</P>
 						</Profile>
 					</ProfileContainer>
 				);
@@ -76,7 +78,7 @@ export const profileClicked = (profileID, props) => {
   let profileDiv = "empty"
 	let rightI;
   for (let i = 0; i < props.profiles.data.length; i++) {
-    if (profileID === props.profiles.data[i].profile._id) {
+    if (profileID === props.profiles.data[i]._id) {
       profileDiv = profilesFromComp[i];
 			rightI = i
       break;
@@ -116,7 +118,7 @@ export const profileUnClicked = (profileID, props, direct) => {
   let profilesFromComp = document.getElementById("profileContainer").childNodes;
 	let profileDiv = "empty";
 	for (let i = 0; i < props.profiles.data.length; i++) {
-		if (profileID === props.profiles.data[i].profile._id) {
+		if (profileID === props.profiles.data[i]._id) {
 			profileDiv = profilesFromComp[i];
 			break;
 		}

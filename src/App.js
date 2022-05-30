@@ -2,7 +2,6 @@ import './App.css';
 import styled from "styled-components"
 import EditProfile from './components/login_reg/EditProfile';
 import LoginPage from './Pages/LoginPage';
-import EditProfile from "./components/login_reg/EditProfile";
 import LearnerProfilePage from "./Pages/LearnerProfilePage";
 import SearchProfiles from "./components/SearchProfiles/SearchProfiles.js"
 import React, { createContext, useState } from 'react';
