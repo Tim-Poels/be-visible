@@ -13,16 +13,16 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/students" element={<SearchProfiles />}>
-          <Route path="edit" element={<RegisterPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<LoginPage />} />
+				<Route path="/register" element={<RegisterPage />} />
+				<Route path="/students" element={<SearchProfiles />} />
+				<Route path="/profile" element={<LearnerProfilePage />} />
+				<Route path="/edit" element={<EditProfile />} />
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
 export default App;

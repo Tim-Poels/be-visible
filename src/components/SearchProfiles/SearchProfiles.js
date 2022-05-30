@@ -10,6 +10,7 @@ import { Outlet } from 'react-router-dom';
 
 export default function SearchProfiles() {
   const [profiles, setProfiles] = useState(null);
+		const [redirect, setRedirect] = useState(false);
   return (
 		<Container>
 			<Outlet />
@@ -21,8 +22,18 @@ export default function SearchProfiles() {
 				</TitleContainer>
 				<Subtext>Meet the students!</Subtext>
 			</Header>
-			<Filter setProfiles={setProfiles} profiles={profiles} />
-			<Profiles setProfiles={setProfiles} profiles={profiles} />
+			<Filter
+				setProfiles={setProfiles}
+				profiles={profiles}
+				redirect={redirect}
+				setRedirect={setRedirect}
+			/>
+			<Profiles
+				setProfiles={setProfiles}
+				profiles={profiles}
+				redirect={redirect}
+				setRedirect={setRedirect}
+			/>
 		</Container>
 	);
 }
