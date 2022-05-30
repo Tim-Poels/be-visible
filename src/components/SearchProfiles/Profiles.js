@@ -4,12 +4,6 @@ import placeholderImg from "../../images/unknown.png"
 import { Navigate } from "react-router-dom";
 
 export default function Profiles(props) {
-	useEffect(() => {
-		console.log("useEffect")
-		if (props.redirect) {
-			Navigate("/profile");
-		}
-		}, []);
 	fetchAllProfiles(props);
   let profilesElems = []
 	if (props.profiles == null) {
@@ -24,8 +18,16 @@ export default function Profiles(props) {
     profilesElems.push(
 			<ProfileContainer key={i} className="quick-fade-in" id={profile._id}>
 				<Profile>
-					{profile.picture === "nopic" && <Img src={placeholderImg}></Img>}
-					{profile.picture !== "nopic" && <Img src={profile.picture}></Img>}
+					{!(profile.picture.includes("png") ||
+						profile.picture.includes("jpeg") ||
+						profile.picture.includes("jpeg")) && (
+						<Img src={placeholderImg}></Img>
+					)}
+					{(profile.picture.includes("png") ||
+						profile.picture.includes("jpg") ||
+						profile.picture.includes("jpeg")) && (
+						<Img src={profile.picture}></Img>
+					)}
 					<div>
 						<Name>{profile.name}</Name>
 						<Role>{profile.title}</Role>
@@ -90,9 +92,6 @@ export const profileClicked = (profileID, props) => {
   let button = document.createElement("button");
 	button.innerText = "Profile";
 	button.className = "profile-button-expand";
-	button.addEventListener("click", () => {
-		props.setRedirect(true)
-	})
 	descriptionDiv.appendChild(button);
 	profileDiv.appendChild(descriptionDiv);
   let arrow = profileDiv.childNodes[0].childNodes[2];
