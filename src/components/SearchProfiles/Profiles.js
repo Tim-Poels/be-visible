@@ -4,46 +4,54 @@ import placeholderImg from "../../images/unknown.png"
 import { Navigate } from "react-router-dom";
 
 export default function Profiles(props) {
-	useEffect(() => {
-		console.log("useEffect")
-		if (props.redirect) {
-			Navigate("/profile");
-		}
-		}, []);
 	fetchAllProfiles(props);
-  let profilesElems = []
-	if (props.profiles == null) {
+	if (props.profiles === null) {
 		return (
 		<Container id="profileContainer">
 			awaiting data
 		</Container>
 		)
 	}
+	let profilesElems = []
   for (let i = 0; i < props.profiles.data.length; i++) {
     let profile = props.profiles.data[i].profile;
-    profilesElems.push(
-			<ProfileContainer key={i} className="quick-fade-in" id={profile._id}>
-				<Profile>
-					{profile.picture === "nopic" && <Img src={placeholderImg}></Img>}
-					{profile.picture !== "nopic" && <Img src={profile.picture}></Img>}
-					<div>
-						<Name>{profile.name}</Name>
-						<Role>{profile.title}</Role>
-					</div>
-					<P onClick={() => profileClicked(profile._id, props)}>^</P>
-				</Profile>
-			</ProfileContainer>
-		);
+		if (profile !== null) {
+			let whatImg;
+			if (profile.picture.includes("png") || profile.picture.includes("jpeg") || profile.picture.includes("jpeg")) {
+				whatImg = <Img src={profile.picture}></Img>;
+			}
+			else {
+				whatImg = <Img src={placeholderImg}></Img>;
+			}
+				profilesElems.push(
+					<ProfileContainer key={i} className="quick-fade-in" id={profile._id}>
+						<Profile>
+							{whatImg}
+							<div>
+								<Name>
+									{profile.firstname !== undefined && profile.firstname + " "}
+									{profile.lastname !== undefined && profile.lastname + " "}
+								</Name>
+								{profile.title !== undefined && (
+									<Role>{profile.title.frontend}</Role>
+								)}
+							</div>
+							<P onClick={() => profileClicked(profile._id, props)}>^</P>
+						</Profile>
+					</ProfileContainer>
+				);
+		}
   }
-  return (
+	return (
     <Container id="profileContainer">
       {profilesElems}  
-    </Container>
+  	</Container>
   )
+
 }
 
 const fetchAllProfiles = (props) => {
-	if (props.profiles == null) {
+	if (props.profiles === null) {
 		const LOGIN_URL = "https://bevisible-backend.herokuapp.com/user/all";
 		const options = {
 			method: "GET",
@@ -57,10 +65,7 @@ const fetchAllProfiles = (props) => {
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
-				if (data.data != undefined) {
-					props.setProfiles(data)
-				}
-				
+				props.setProfiles(data);
 			});
 	}	
 }
@@ -91,7 +96,7 @@ export const profileClicked = (profileID, props) => {
 	button.innerText = "Profile";
 	button.className = "profile-button-expand";
 	button.addEventListener("click", () => {
-		props.setRedirect(true)
+		window.location.href = `/students/${profileID}`;
 	})
 	descriptionDiv.appendChild(button);
 	profileDiv.appendChild(descriptionDiv);

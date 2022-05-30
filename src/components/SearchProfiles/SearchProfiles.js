@@ -15,8 +15,6 @@ export default function SearchProfiles() {
 	const [profiles, setProfiles] = useState(null);
 	//console log for testing
 	console.log("test user id " + userId + "test user token " + token)
-
-	const [redirect, setRedirect] = useState(false);
 	return (
 
 		<Container>
@@ -32,14 +30,10 @@ export default function SearchProfiles() {
 			<Filter
 				setProfiles={setProfiles}
 				profiles={profiles}
-				redirect={redirect}
-				setRedirect={setRedirect}
 			/>
 			<Profiles
 				setProfiles={setProfiles}
 				profiles={profiles}
-				redirect={redirect}
-				setRedirect={setRedirect}
 			/>
 		</Container>
 	);

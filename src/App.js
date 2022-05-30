@@ -12,7 +12,6 @@ import { NewProvider } from './context'
 
 
 function App() {
-
   return (
 
     <NewProvider>
