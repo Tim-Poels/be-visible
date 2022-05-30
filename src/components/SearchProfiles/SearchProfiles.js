@@ -16,10 +16,8 @@ export default function SearchProfiles() {
 	//console log for testing
 	console.log("test user id " + userId + "test user token " + token)
 
-
-  const [profiles, setProfiles] = useState(null);
-		const [redirect, setRedirect] = useState(false);
-  return (
+	const [redirect, setRedirect] = useState(false);
+	return (
 
 		<Container>
 			<Outlet />
