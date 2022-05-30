@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useContext } from 'react'
+import { userContext } from "../../context";
 import Button from '../ui_comp/Button.js'
 import Input from '../ui_comp/Input.js'
 import styled from 'styled-components'
@@ -7,8 +8,11 @@ import Checkbox from '../ui_comp/Checkbox.js'
 import cvImage from '../../images/cvImage.png'
 import Axios from 'axios'
 // import { Image } from "cloudinary-react"
+import NavbarMob from "../ui_comp/NavbarMob"
+
 
 const EditProfile = () => {
+    const { userId, token } = useContext(userContext);
 
     const [inputs, setInputs] = useState()
     const [inputAccept, setInputAccept] = useState()
@@ -19,7 +23,7 @@ const EditProfile = () => {
     const inputFile = useRef()
     const incrFiles = 0
 
-
+    console.log(userId + " test " + token)
     function storeAndUpdate(data) {
         //adding data and update
         setInputs(inputs => ({ ...inputs, ...data }))
@@ -32,58 +36,58 @@ const EditProfile = () => {
         // /user/profile/new
         const EDIT_P_URL = "https://bevisible-backend.herokuapp.com/user/profile/edit";
 
-    fetch(EDIT_P_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-access-token":
-					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTQ5OTUyYzU5OTQ4N2IyMzc5ZmMxMyIsImlhdCI6MTY1MzkwNTc2MywiZXhwIjoxNjUzOTkyMTYzfQ.J4QO7JSuoDETfIxadhNni24zeOhQ1Mjh5xnikZL4O-c"
-                
-      },
-      mode: "cors",
-      body: JSON.stringify({
-        //chang62860fa0210230064d61b8c0e coach to email after you can register with an email
-        
-        
-        picture:"blabla",
-        firstname:"blabla",
-        lastname:"blabla",
-        title: {
-            frontend:"blabla",
-            backend:"blabla"
-        },
-        about:"blabla",
-        status:"blabla",
-        tags:"blabla",
-        work: {
-            position:"blabla",
-            duration:"blabla"
-        },
-        education: {
-            school:"blabla",
-            graduation:"blabla"
-        },
-        interests:"blabla",
-        cvlink:"blabla",
-       // phonenumber:"blabla",
-        socials: {
-            email:"blabla",
-            github:"blabla",
-            linkedin:"blabla",
-            website:"blabla"
-        },
-            id: "628b996dd9e4bd7ad3c2cdcd"
-        
+        fetch(EDIT_P_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "x-access-token":
+                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTQ5OTUyYzU5OTQ4N2IyMzc5ZmMxMyIsImlhdCI6MTY1MzkwNTc2MywiZXhwIjoxNjUzOTkyMTYzfQ.J4QO7JSuoDETfIxadhNni24zeOhQ1Mjh5xnikZL4O-c"
 
-        // inputs
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        // setErrMsg(data.message);
-      });
-  
+            },
+            mode: "cors",
+            body: JSON.stringify({
+                //chang62860fa0210230064d61b8c0e coach to email after you can register with an email
+
+
+                picture: "blabla",
+                firstname: "blabla",
+                lastname: "blabla",
+                title: {
+                    frontend: "blabla",
+                    backend: "blabla"
+                },
+                about: "blabla",
+                status: "blabla",
+                tags: "blabla",
+                work: {
+                    position: "blabla",
+                    duration: "blabla"
+                },
+                education: {
+                    school: "blabla",
+                    graduation: "blabla"
+                },
+                interests: "blabla",
+                cvlink: "blabla",
+                // phonenumber:"blabla",
+                socials: {
+                    email: "blabla",
+                    github: "blabla",
+                    linkedin: "blabla",
+                    website: "blabla"
+                },
+                id: "628b996dd9e4bd7ad3c2cdcd"
+
+
+                // inputs
+            }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                // setErrMsg(data.message);
+            });
+
 
     }
 
@@ -126,14 +130,14 @@ const EditProfile = () => {
             const formData = new FormData()
             formData.append('file', img)
             formData.append("upload_preset", "gzllmk5l")
-            Axios.post("https://api.cloudinary.com/v1_1/dxq4veqsa/upload", formData )
+            Axios.post("https://api.cloudinary.com/v1_1/dxq4veqsa/upload", formData)
                 .then((response) => {
                     console.log(response)
                     setUrl(response.data.secure_url)
                     //add to EditProfile OBJECT the link of the picture of the user
-                    storeAndUpdate({picture : response.data.secure_url})
+                    storeAndUpdate({ picture: response.data.secure_url })
                 })
-        }else{
+        } else {
             const formData = new FormData()
             formData.append('document', img)
             const requestOptions = {
@@ -144,12 +148,12 @@ const EditProfile = () => {
                 mode: "cors",
 
             }
-           
+
             Axios.post('https://api.pspdfkit.com/build', formData, requestOptions)
-              
-            .then((response) => {
-                console.log(response)
-            })
+
+                .then((response) => {
+                    console.log(response)
+                })
 
         }
     }
@@ -171,6 +175,7 @@ const EditProfile = () => {
     return (
 
         <Container>
+            <NavbarMob />
             <MainTitle>EditProfile</MainTitle>
             <InputCont>
                 <Input title={"First Name"} placeholder={"John"} icon={0} handleChange={storeAndUpdate} dataName={"name"}></Input>
@@ -202,7 +207,7 @@ const EditProfile = () => {
                 </FlexCont>
                 <input type="file" id='file' ref={inputFile} style={{ display: 'none' }} accept={inputAccept} onChange={readUploaded} name="files[]" onInput={onLoadFile} />
                 <Input title={"Github"} placeholder={"https://github.com/johndoe01"} icon={5} marginB={"6px"} handleChange={storeAndUpdate} dataName={"socials.github"}></Input>
-                <Input title={"Linkedin"} placeholder={"https://linkedin.com/johndoe01"} icon={6} marginB={"6px"} handleChange={storeAndUpdate}dataName={"socials.linkedin"}></Input>
+                <Input title={"Linkedin"} placeholder={"https://linkedin.com/johndoe01"} icon={6} marginB={"6px"} handleChange={storeAndUpdate} dataName={"socials.linkedin"}></Input>
                 <Input title={"Website"} placeholder={"https://www.johndoe01.com"} icon={7} handleChange={storeAndUpdate} dataName={"socials.website"}></Input>
             </InputCont>
             <Button buttonText={"Edit Profile"} width={"318px"} submitForm={handleSubmit}>

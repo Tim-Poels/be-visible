@@ -21,7 +21,36 @@ const LearnerProfile = () => {
   React.useEffect(() => {
     AOS.init();
     AOS.refresh();
+
+    const LOGIN_URL = "https://bevisible-backend.herokuapp.com/user/profile";
+
+    const urlArray = window.location.href.split("/");
+    const id = urlArray[urlArray.length - 1];
+    console.log(id);
+    fetch(LOGIN_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTQ3YzRmOTkwNmQ3MmY4MDZmZTg2MCIsImlhdCI6MTY1Mzg5ODQ2NywiZXhwIjoxNjUzOTg0ODY3fQ.FK8WGP5uZoaSR5L7YmQjz1buOpO9HILIkI9lbJSs75Q",
+      },
+      mode: "cors",
+      body: JSON.stringify({
+        id: id,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
   }, []);
+  /*
+  GET ONE PROFILE
+    /user/profile
+    token needed
+    {
+        "id": "current user id"
+    } */
 
   const heroStyle = {
     height: "100vh",
