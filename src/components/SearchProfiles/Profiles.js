@@ -4,10 +4,8 @@ import placeholderImg from "../../images/unknown.png"
 import { Navigate } from "react-router-dom";
 
 export default function Profiles(props) {
-	console.log("start loading profiles comp")
 	fetchAllProfiles(props);
 	if (props.profiles === null) {
-		console.log('return because "No Profiles?"')
 		return (
 		<Container id="profileContainer">
 			awaiting data
@@ -44,7 +42,6 @@ export default function Profiles(props) {
 				);
 		}
   }
-	console.log("return")
 	return (
     <Container id="profileContainer">
       {profilesElems}  
@@ -55,7 +52,6 @@ export default function Profiles(props) {
 
 const fetchAllProfiles = (props) => {
 	if (props.profiles === null) {
-		console.log("start fetching");
 		const LOGIN_URL = "https://bevisible-backend.herokuapp.com/user/all";
 		const options = {
 			method: "GET",

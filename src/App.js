@@ -12,7 +12,6 @@ import { NewProvider } from './context'
 
 
 function App() {
-  console.log("start loading app comp")
   return (
 
     <NewProvider>
