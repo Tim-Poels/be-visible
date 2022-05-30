@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { useState, useRef, useContext } from 'react'
+=======
+import { useState, useRef,useContext } from 'react'
+>>>>>>> d0f8435f47f74d322af7cbedf8bf181991589c3a
 import { userContext } from "../../context";
 import Button from '../ui_comp/Button.js'
 import Input from '../ui_comp/Input.js'
@@ -7,13 +11,18 @@ import Title from '../ui_comp/Title.js'
 import Checkbox from '../ui_comp/Checkbox.js'
 import cvImage from '../../images/cvImage.png'
 import Axios from 'axios'
+import NavbarMob from '../ui_comp/NavbarMob';
 // import { Image } from "cloudinary-react"
 import NavbarMob from "../ui_comp/NavbarMob"
 
 
 const EditProfile = () => {
+<<<<<<< HEAD
     const { userId, token } = useContext(userContext);
 
+=======
+    const { userId, setUserId, token, setToken } = useContext(userContext);
+>>>>>>> d0f8435f47f74d322af7cbedf8bf181991589c3a
     const [inputs, setInputs] = useState()
     const [inputAccept, setInputAccept] = useState()
     const [url, setUrl] = useState('')
@@ -36,6 +45,7 @@ const EditProfile = () => {
         // /user/profile/new
         const EDIT_P_URL = "https://bevisible-backend.herokuapp.com/user/profile/edit";
 
+<<<<<<< HEAD
         fetch(EDIT_P_URL, {
             method: "POST",
             headers: {
@@ -88,6 +98,60 @@ const EditProfile = () => {
                 // setErrMsg(data.message);
             });
 
+=======
+    fetch(EDIT_P_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token":
+					token
+                
+      },
+      mode: "cors",
+      body: JSON.stringify({
+        //chang62860fa0210230064d61b8c0e coach to email after you can register with an email
+        
+        
+        picture: inputs.picture,
+        firstname: inputs.firstname,
+        lastname: inputs.lastname,
+        title: {
+            frontend: inputs.frontend,
+            backend:inputs.backend
+        },
+        about:"",
+        status:"",
+        tags:"",
+        work: {
+            position:"",
+            duration:""
+        },
+        education: {
+            school:"",
+            graduation:""
+        },
+        interests:"",
+        cvlink:"",
+       // phonenumber:"blabla",
+        socials: {
+            email:"",
+            github:inputs.github,
+            linkedin:inputs.linkedin,
+            website:inputs.website
+        },
+            id: userId
+        
+
+        // inputs
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // setErrMsg(data.message);
+      });
+  
+>>>>>>> d0f8435f47f74d322af7cbedf8bf181991589c3a
 
     }
 
@@ -140,12 +204,13 @@ const EditProfile = () => {
         } else {
             const formData = new FormData()
             formData.append('document', img)
+            console.log(formData)
             const requestOptions = {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer pdf_live_2vvVa1YPciVwfM4vhy9q437mjNvbRaxuMoVOUB0RJ01'
                 },
-                mode: "cors",
+                mode: "no-  cors",
 
             }
 
@@ -175,17 +240,21 @@ const EditProfile = () => {
     return (
 
         <Container>
+<<<<<<< HEAD
             <NavbarMob />
+=======
+            <NavbarMob></NavbarMob>
+>>>>>>> d0f8435f47f74d322af7cbedf8bf181991589c3a
             <MainTitle>EditProfile</MainTitle>
             <InputCont>
-                <Input title={"First Name"} placeholder={"John"} icon={0} handleChange={storeAndUpdate} dataName={"name"}></Input>
+                <Input title={"First Name"} placeholder={"John"} icon={0} handleChange={storeAndUpdate} dataName={"firstname"}></Input>
                 <Input title={"Last Name"} placeholder={"Doe"} icon={1} handleChange={storeAndUpdate} dataName={"lastname"}></Input>
                 <Input title={"Phone Number"} placeholder={"+32474123456"} icon={4} handleChange={storeAndUpdate} dataName={"phoneNumber"}></Input>
                 <TitleCont>
                     <Title title={"Back-End / Front-End"} ></Title>
                     <CheckBoxCont>
-                        <Checkbox svg={11} myTitle={"Back-End"} handleChange={storeAndUpdate} dataName={"status.backend"}></Checkbox>
-                        <Checkbox svg={11} myTitle={"Front-End"} handleChange={storeAndUpdate} dataName={"status.frontend"}></Checkbox>
+                        <Checkbox svg={11} myTitle={"Back-End"} handleChange={storeAndUpdate} dataName={"backend"}></Checkbox>
+                        <Checkbox svg={11} myTitle={"Front-End"} handleChange={storeAndUpdate} dataName={"frontend"}></Checkbox>
                     </CheckBoxCont>
                 </TitleCont>
                 <FlexCont>
@@ -206,9 +275,15 @@ const EditProfile = () => {
                     </TitlePic>
                 </FlexCont>
                 <input type="file" id='file' ref={inputFile} style={{ display: 'none' }} accept={inputAccept} onChange={readUploaded} name="files[]" onInput={onLoadFile} />
+<<<<<<< HEAD
                 <Input title={"Github"} placeholder={"https://github.com/johndoe01"} icon={5} marginB={"6px"} handleChange={storeAndUpdate} dataName={"socials.github"}></Input>
                 <Input title={"Linkedin"} placeholder={"https://linkedin.com/johndoe01"} icon={6} marginB={"6px"} handleChange={storeAndUpdate} dataName={"socials.linkedin"}></Input>
                 <Input title={"Website"} placeholder={"https://www.johndoe01.com"} icon={7} handleChange={storeAndUpdate} dataName={"socials.website"}></Input>
+=======
+                <Input title={"Github"} placeholder={"https://github.com/johndoe01"} icon={5} marginB={"6px"} handleChange={storeAndUpdate} dataName={"github"}></Input>
+                <Input title={"Linkedin"} placeholder={"https://linkedin.com/johndoe01"} icon={6} marginB={"6px"} handleChange={storeAndUpdate}dataName={"linkedin"}></Input>
+                <Input title={"Website"} placeholder={"https://www.johndoe01.com"} icon={7} handleChange={storeAndUpdate} dataName={"website"}></Input>
+>>>>>>> d0f8435f47f74d322af7cbedf8bf181991589c3a
             </InputCont>
             <Button buttonText={"Edit Profile"} width={"318px"} submitForm={handleSubmit}>
             </Button>
