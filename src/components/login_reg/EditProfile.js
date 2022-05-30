@@ -39,8 +39,8 @@ const EditProfile = () => {
       headers: {
         "Content-Type": "application/json",
         "x-access-token":
-					token
-                
+					token ? token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTQ5OTUyYzU5OTQ4N2IyMzc5ZmMxMyIsImlhdCI6MTY1MzkwNTc2MywiZXhwIjoxNjUzOTkyMTYzfQ.J4QO7JSuoDETfIxadhNni24zeOhQ1Mjh5xnikZL4O-c"
+                    
       },
       mode: "cors",
       body: JSON.stringify({
@@ -101,7 +101,7 @@ const EditProfile = () => {
         let myTarget = e.target.textContent
         if (myTarget.includes('Camera')) {
             console.log('picture')
-            await setInputAccept("image/png, image/jpeg")
+            await setInputAccept("image/png, image/jpeg, image/jpg")
             //the useState is taking some time to change the variable
             await autoClickInput()
             await setButtonType('picture')
@@ -124,7 +124,7 @@ const EditProfile = () => {
         //create The Image locally
         // const obj = URL.createObjectURL(img)
 
-        if (img.name.includes("png" || "jpeg" || "jpg")) {
+        if (img.name.includes("png") || ("jpeg") || ("jpg")) {
             const formData = new FormData()
             formData.append('file', img)
             formData.append("upload_preset", "gzllmk5l")
