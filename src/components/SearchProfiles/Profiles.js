@@ -1,14 +1,23 @@
-import react, { useEffect } from "react";
+import react, { useEffect, useState } from "react";
 import styled from "styled-components";
 import placeholderImg from "../../images/unknown.png"
+import { Navigate } from "react-router-dom";
 
 export default function Profiles(props) {
+	useEffect(() => {
+		console.log("useEffect")
+		if (props.redirect) {
+			Navigate("/profile");
+		}
+		}, []);
 	fetchAllProfiles(props);
   let profilesElems = []
 	if (props.profiles == null) {
-		return <Container id="profileContainer">
+		return (
+		<Container id="profileContainer">
 			awaiting data
-		</Container>;
+		</Container>
+		)
 	}
   for (let i = 0; i < props.profiles.data.length; i++) {
     let profile = props.profiles.data[i].profile;
@@ -41,14 +50,17 @@ const fetchAllProfiles = (props) => {
 			mode: "cors",
 			headers: {
 				"x-access-token":
-					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGUyOWRkZDM2ZGM0MGQ1MDAxOWNiZCIsImlhdCI6MTY1MzY0MjA4MiwiZXhwIjoxNjUzNzI4NDgyfQ.qH0gKV2lOkiUy1IxEp373FOb6JwZqcqw3MzSedafg8I",
-			}
+					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTQ3YzRmOTkwNmQ3MmY4MDZmZTg2MCIsImlhdCI6MTY1Mzg5ODQ2NywiZXhwIjoxNjUzOTg0ODY3fQ.FK8WGP5uZoaSR5L7YmQjz1buOpO9HILIkI9lbJSs75Q",
+			},
 		};
 		fetch(LOGIN_URL, options)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(JSON.stringify(data));
-				props.setProfiles(data)
+				console.log(data);
+				if (data.data != undefined) {
+					props.setProfiles(data)
+				}
+				
 			});
 	}	
 }
@@ -78,6 +90,9 @@ export const profileClicked = (profileID, props) => {
   let button = document.createElement("button");
 	button.innerText = "Profile";
 	button.className = "profile-button-expand";
+	button.addEventListener("click", () => {
+		props.setRedirect(true)
+	})
 	descriptionDiv.appendChild(button);
 	profileDiv.appendChild(descriptionDiv);
   let arrow = profileDiv.childNodes[0].childNodes[2];
@@ -92,7 +107,7 @@ export const profileClicked = (profileID, props) => {
 	}, 500);	
 }
 
-export const profileUnClicked = (profileID, props) => {
+export const profileUnClicked = (profileID, props, direct) => {
   let profilesFromComp = document.getElementById("profileContainer").childNodes;
 	let profileDiv = "empty";
 	for (let i = 0; i < props.profiles.data.length; i++) {
@@ -116,7 +131,7 @@ export const profileUnClicked = (profileID, props) => {
     descriptionDiv.remove();
 		profileDiv.className = "after-quick-fade-out"
     arrow.addEventListener("click", function clicked() {
-			profileClicked(profileID, props);
+			profileClicked(profileID, props, direct);
 		});
 	}, 450);	
 	};
