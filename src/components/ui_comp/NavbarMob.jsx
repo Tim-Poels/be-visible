@@ -27,7 +27,7 @@ const NavbarMob = () => {
             <img src={logo} alt="Be Visible logo" />
 
             <a href="#hero">
-              <h4>{userId}</h4>
+              <h4>BeVisible</h4>
             </a>
           </div>
           <ul>

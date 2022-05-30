@@ -51,9 +51,6 @@ const LoginPage = () => {
         } else {
           setErrMsg("Login failed");
         }
-
-        //then , navigate to dashboard here
-        //once the router is set up
       });
   };
 

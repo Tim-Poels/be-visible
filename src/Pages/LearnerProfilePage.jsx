@@ -16,8 +16,16 @@ import ContactPhone from "../components/learner-profile/ContactPhone";
 import ContactEmail from "../components/learner-profile/ContactEmail";
 import Footer from "../components/Footer";
 import NavbarMob from "../components/ui_comp/NavbarMob";
+import { userContext } from "../context";
+import { useContext, useState } from "react";
 
 const LearnerProfile = () => {
+  /*
+  const { userId, token, } = useContext(userContext);
+  console.log("testing states " + token);
+  */
+  const [profile, setProfile] = useState(null);
+
   React.useEffect(() => {
     AOS.init();
     AOS.refresh();
@@ -41,16 +49,11 @@ const LearnerProfile = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        //handle errors here later
+        setProfile(data);
         console.log(data);
       });
   }, []);
-  /*
-  GET ONE PROFILE
-    /user/profile
-    token needed
-    {
-        "id": "current user id"
-    } */
 
   const heroStyle = {
     height: "100vh",
@@ -58,18 +61,19 @@ const LearnerProfile = () => {
     justifyContent: "center",
     alignItems: "center",
   };
-
+  if (profile === null) {
+    return <div>Still loading...</div>;
+  }
   return (
     <div className="body-container">
       <Section primary style={heroStyle}>
         <NavbarMob />
         <Header
           id="hero"
-          name={"Augustus Granpa"}
-          dev={"Frontend Developer"}
-          bio={
-            "Little description of yourself here. Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit magni debitis consequatur inventore"
-          }
+          name={profile.data.firstname + " " + profile.data.lastname}
+          dev={profile.data.title}
+          bio={profile.data.about}
+          img={profile.data.picture}
         />
       </Section>
 
