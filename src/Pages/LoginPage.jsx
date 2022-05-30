@@ -1,4 +1,5 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
+import { userContext } from "../context";
 import "../components/login-page/login-page.css";
 import Footer from "../components/Footer";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,27 +8,23 @@ const LoginPage = () => {
   //code for setting username and password
   const [pwd, setPwd] = useState("");
   const [email, setEmail] = useState("");
-  //use useContext for the global states !!!
-  const [userId, setUserId] = useState("");
-  const [token, setToken] = useState("");
+  //state for error messages
   const errRef = useRef("");
   const [errMsg, setErrMsg] = useState("");
+  //for remember me button
   const [checked, setChecked] = useState(false);
   const handleCheckboxChange = () => {
     setChecked(!checked);
   };
+  //navigate after a fetch
   const navigate = useNavigate();
+  //useContext for user id and token
+  const { userId, setUserId, token, setToken } = useContext(userContext);
   const LOGIN_URL = "https://bevisible-backend.herokuapp.com/user/signin";
+
+  //fetch on form submit to log in
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const testurl = "https://bevisible-backend.herokuapp.com/user/all";
-
-    fetch(testurl)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      });
 
     fetch(LOGIN_URL, {
       method: "POST",
