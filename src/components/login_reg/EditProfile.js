@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react'
+import { useState, useRef,useContext } from 'react'
+import { userContext } from "../../context";
 import Button from '../ui_comp/Button.js'
 import Input from '../ui_comp/Input.js'
 import styled from 'styled-components'
@@ -6,10 +7,11 @@ import Title from '../ui_comp/Title.js'
 import Checkbox from '../ui_comp/Checkbox.js'
 import cvImage from '../../images/cvImage.png'
 import Axios from 'axios'
+import NavbarMob from '../ui_comp/NavbarMob';
 // import { Image } from "cloudinary-react"
 
 const EditProfile = () => {
-
+    const { userId, setUserId, token, setToken } = useContext(userContext);
     const [inputs, setInputs] = useState()
     const [inputAccept, setInputAccept] = useState()
     const [url, setUrl] = useState('')
@@ -37,7 +39,7 @@ const EditProfile = () => {
       headers: {
         "Content-Type": "application/json",
         "x-access-token":
-					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTQ5OTUyYzU5OTQ4N2IyMzc5ZmMxMyIsImlhdCI6MTY1MzkwNTc2MywiZXhwIjoxNjUzOTkyMTYzfQ.J4QO7JSuoDETfIxadhNni24zeOhQ1Mjh5xnikZL4O-c"
+					token
                 
       },
       mode: "cors",
@@ -72,7 +74,7 @@ const EditProfile = () => {
             linkedin:inputs.linkedin,
             website:inputs.website
         },
-            id: "628b996dd9e4bd7ad3c2cdcd"
+            id: userId
         
 
         // inputs
@@ -172,6 +174,7 @@ const EditProfile = () => {
     return (
 
         <Container>
+            <NavbarMob></NavbarMob>
             <MainTitle>EditProfile</MainTitle>
             <InputCont>
                 <Input title={"First Name"} placeholder={"John"} icon={0} handleChange={storeAndUpdate} dataName={"firstname"}></Input>
