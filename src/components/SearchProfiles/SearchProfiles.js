@@ -9,8 +9,8 @@ import NavbarMob from "../ui_comp/NavbarMob";
 import { Outlet } from 'react-router-dom';
 
 export default function SearchProfiles() {
-	const [profiles, setProfiles] = useState(profileData);
-	return (
+  const [profiles, setProfiles] = useState(null);
+  return (
 		<Container>
 			<Outlet />
 			<NavbarMob />
@@ -22,7 +22,7 @@ export default function SearchProfiles() {
 				<Subtext>Meet the students!</Subtext>
 			</Header>
 			<Filter setProfiles={setProfiles} profiles={profiles} />
-			<Profiles profiles={profiles} />
+			<Profiles setProfiles={setProfiles} profiles={profiles} />
 		</Container>
 	);
 }
