@@ -19,3 +19,7 @@ works.
 - One for Companies and recruiters where they will be able to check out learners profiles
 
 ### Technologies used : React
+
+### Work in Progress
+
+Version 1.0 deployed on Heroku [BeVisible](https://bevisible-best-team.herokuapp.com/)
