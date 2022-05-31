@@ -9,6 +9,7 @@ import RegisterPage from './Pages/RegisterPage';
 import Register from "./components/login_reg/EditProfile"
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { NewProvider } from './context'
+import NewProfile from './components/login_reg/NewProfile';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/students" element={<SearchProfiles />} />
           <Route path="/edit" element={<EditProfile />} />
           <Route path="/students/:id" element={<LearnerProfilePage />} />
+          <Route path="/newprofile" element={<NewProfile/>} />
         </Routes>
       </BrowserRouter>
     </NewProvider>

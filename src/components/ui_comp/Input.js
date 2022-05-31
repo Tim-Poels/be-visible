@@ -8,7 +8,7 @@ const Input = ({ placeholder, title, icon, marginB, type, handleChange,dataName 
   const [inputValue, setInputValue] = useState('')
   
   useEffect(()=>{
-    console.log(inputValue)
+    // console.log(inputValue)
     handleChange({ [dataName]: inputValue })
   },[inputValue])
   
