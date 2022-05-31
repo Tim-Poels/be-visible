@@ -28,13 +28,3 @@ function App() {
 }
 
 export default App;
-
-standard padding for  each page
-  const Content = styled.div`
-   min-height: 120vh;
-   width: 100vw;
-   background-color: white;
-   display: flex;
-   flex-direction: column;
-   overflow-x: scroll;
- `;

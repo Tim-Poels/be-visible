@@ -1,4 +1,5 @@
-import { useState, useRef } from "react";
+import { useState, useRef,useContext } from "react";
+import { userContext } from "../context";
 import "../components/login-page/login-page.css";
 import Footer from "../components/Footer";
 import { Link,useNavigate } from "react-router-dom";
@@ -12,17 +13,22 @@ const RegisterPage = () => {
   const [errMsg, setErrMsg] = useState("");
 
   const [checked, setChecked] = useState(false);
+  const { userId, setUserId, token, setToken } = useContext(userContext);
   
 
   const handleCheckboxChange = () => {
     setChecked(!checked);
   };
   const navigate = useNavigate();
-  const LOGIN_URL = "https://bevisible-backend.herokuapp.com/user/signup";
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const REG_URL = "https://bevisible-backend.herokuapp.com/user/signup";
+  const LOG_URL = "https://bevisible-backend.herokuapp.com/user/signin"
 
-    fetch(LOGIN_URL, {
+  const myNav = () =>{
+    navigate("/newprofile", { replace: true });
+  } 
+
+  const fetchLogin = () => {
+    fetch(LOG_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,9 +43,45 @@ const RegisterPage = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        navigate("/newprofile", { replace: true });
-        setErrMsg(data.message);
+        if (data.id && data.accessToken) {
+          setUserId(data.id);
+          setToken(data.accessToken);
+          setErrMsg("Login sucessful");
+          setTimeout(() => {
+            myNav()
+          }, "250");
+        } else {
+          setErrMsg("Login failed");
+        }
       });
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("startFetch")
+    fetch(REG_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      body: JSON.stringify({
+        //change coach to email after you can register with an email
+        email: email,
+        password: pwd,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        fetchLogin()
+        setErrMsg(data.message);
+      })
+      .catch(function(error){
+        console.log("my error");
+        myNav()
+      })
+      
   };
 
   return (
