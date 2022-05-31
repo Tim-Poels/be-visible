@@ -5,8 +5,7 @@ import { useNavigate, Redirect, browserHistory } from "react-router-dom";
 
 export default function Profiles(props) {
 	let navigate = useNavigate();
-	if (props.switchPage !== false) {
-		//Navigate(`/students/${props.switchPage}`);	
+	if (props.switchPage !== false) {	
 		navigate(`/students/${props.switchPage}`, { replace: true });
 	}
 	fetchAllProfiles(props);
@@ -68,7 +67,7 @@ const fetchAllProfiles = (props) => {
 			mode: "cors",
 			headers: {
 				"x-access-token":
-					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTQ3YzRmOTkwNmQ3MmY4MDZmZTg2MCIsImlhdCI6MTY1Mzg5ODQ2NywiZXhwIjoxNjUzOTg0ODY3fQ.FK8WGP5uZoaSR5L7YmQjz1buOpO9HILIkI9lbJSs75Q",
+					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTQ3YzRmOTkwNmQ3MmY4MDZmZTg2MCIsImlhdCI6MTY1Mzk4NTgyNywiZXhwIjoxNjU0MDcyMjI3fQ.I_bO2rrZ-4dQlF6tilwo_QGo9bno5zpqkTaM51jHAXU",
 			},
 		};
 		fetch(LOGIN_URL, options)
