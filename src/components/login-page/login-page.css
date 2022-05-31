@@ -78,14 +78,10 @@ a {
   color: black;
 }
 
-.poppup {
+#poppup {
   color: red;
   text-align: center;
   font-weight: bold;
   font-family: roboto;
-  width: 52.5vw;
-}
-
-#poppup {
-  margin-top: 10px;
+  
 }

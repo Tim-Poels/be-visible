@@ -56,8 +56,8 @@ const LoginPage = () => {
           }
         }
       })
-      .catch((error) => {
-        setErrMsg(error);
+      .catch(() => {
+        setErrMsg("problems connecting to server");
       });
   };
 

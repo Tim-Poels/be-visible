@@ -77,10 +77,9 @@ const RegisterPage = () => {
         setErrMsg(data.error);
         fetchLogin()
       })
-      .catch(error => {
+      .catch(() => {
         console.log("catch")
-        setErrMsg(error.message);
-        myNav()
+        setErrMsg("Problems connecting to server");
       }); 
   };
 
