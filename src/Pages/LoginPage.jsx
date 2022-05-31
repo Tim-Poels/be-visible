@@ -56,8 +56,8 @@ const LoginPage = () => {
           }
         }
       })
-      .catch(error => {
-        setErrMsg(error);
+      .catch(() => {
+        setErrMsg("problems connecting to server");
       });
   };
 
@@ -76,7 +76,7 @@ const LoginPage = () => {
           <Link to="register">Register</Link>
         </div>
         <div className="form-container">
-          <p ref={errRef} className="margin-p poppup">
+          <p ref={errRef} id="poppup" className="margin-p poppup">
             {errMsg}
           </p>
           <form onSubmit={handleSubmit}>
