@@ -17,9 +17,9 @@ function App() {
           <Route path="/" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/students" element={<SearchProfiles />} />
-            <Route path="/edit" element={<EditProfile />} />
+          <Route path="/edit" element={<EditProfile />} />
           <Route path="/students/:id" element={<LearnerProfilePage />} />
-          <Route path="/newprofile" element={<NewProfile/>} />
+          <Route path="/newprofile" element={<NewProfile />} />
         </Routes>
       </BrowserRouter>
     </NewProvider>
@@ -28,13 +28,3 @@ function App() {
 }
 
 export default App;
-
-standard padding for  each page
-  const Content = styled.div`
-   min-height: 120vh;
-   width: 100vw;
-   background-color: white;
-   display: flex;
-   flex-direction: column;
-   overflow-x: scroll;
- `;
