@@ -147,64 +147,61 @@ const NewProfile = () => {
       <p ref={errRef} id="poppup" className="margin-p">
         {errMsg}
       </p>
-      <form onSubmit={handleSubmit}>
-        <InputCont>
-          <Input
-            title={"Project name"}
-            placeholder={"My app"}
-            icon={0}
-            handleChange={storeAndUpdate}
-            dataName={"name"}
-          ></Input>
 
-          <FlexCont>
-            <TitlePic>
-              <Title title={"Project picture"}></Title>
-              <div
-                style={{ alignSelf: "flex-end", display: "flex", gap: "8px" }}
-              >
-                <Button
-                  width={"80px"}
-                  marginTop={"0px"}
-                  buttonImage={9}
-                  uploadFile={uploadFile}
-                ></Button>
-                <img
-                  src={url}
-                  style={{ height: "45px", visibility: profileVisibility }}
-                  alt={"profile"}
-                ></img>
-                {/* <Image cloudName="dxq4veqsa" public_id =" "/> */}
-              </div>
-            </TitlePic>
-          </FlexCont>
-          <input
-            type="file"
-            id="file"
-            ref={inputFile}
-            style={{ display: "none" }}
-            accept={inputAccept}
-            onChange={readUploaded}
-            name="files[]"
-            onInput={onLoadFile}
-          />
-          <Input
-            title={"Github"}
-            placeholder={"https://github.com/johndoe01"}
-            icon={5}
-            marginB={"6px"}
-            handleChange={storeAndUpdate}
-            dataName={"link"}
-          ></Input>
-        </InputCont>
-        <SpaceFooter>
-          <Button
-            buttonText={"Add project"}
-            width={"318px"}
-            type={"submit"}
-          ></Button>
-        </SpaceFooter>
-      </form>
+      <InputCont>
+        <Input
+          title={"Project name"}
+          placeholder={"My app"}
+          icon={0}
+          handleChange={storeAndUpdate}
+          dataName={"name"}
+        ></Input>
+
+        <FlexCont>
+          <TitlePic>
+            <Title title={"Project picture"}></Title>
+            <div style={{ alignSelf: "flex-end", display: "flex", gap: "8px" }}>
+              <Button
+                width={"80px"}
+                marginTop={"0px"}
+                buttonImage={9}
+                uploadFile={uploadFile}
+              ></Button>
+              <img
+                src={url}
+                style={{ height: "45px", visibility: profileVisibility }}
+                alt={"profile"}
+              ></img>
+              {/* <Image cloudName="dxq4veqsa" public_id =" "/> */}
+            </div>
+          </TitlePic>
+        </FlexCont>
+        <input
+          type="file"
+          id="file"
+          ref={inputFile}
+          style={{ display: "none" }}
+          accept={inputAccept}
+          onChange={readUploaded}
+          name="files[]"
+          onInput={onLoadFile}
+        />
+        <Input
+          title={"Github"}
+          placeholder={"https://github.com/johndoe01"}
+          icon={5}
+          marginB={"6px"}
+          handleChange={storeAndUpdate}
+          dataName={"link"}
+        ></Input>
+      </InputCont>
+      <SpaceFooter>
+        <Button
+          buttonText={"Add project"}
+          width={"318px"}
+          submitForm={handleSubmit}
+        ></Button>
+      </SpaceFooter>
     </Container>
   );
 };
