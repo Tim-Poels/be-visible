@@ -1,12 +1,9 @@
 import './App.css';
-import styled from "styled-components"
 import EditProfile from './components/login_reg/EditProfile';
 import LoginPage from './Pages/LoginPage';
 import LearnerProfilePage from "./Pages/LearnerProfilePage";
 import SearchProfiles from "./components/SearchProfiles/SearchProfiles.js"
-import React, { createContext, useState } from 'react';
 import RegisterPage from './Pages/RegisterPage';
-import Register from "./components/login_reg/EditProfile"
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { NewProvider } from './context'
 import NewProfile from './components/login_reg/NewProfile';
@@ -20,7 +17,7 @@ function App() {
           <Route path="/" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/students" element={<SearchProfiles />} />
-          <Route path="/edit" element={<EditProfile />} />
+            <Route path="/edit" element={<EditProfile />} />
           <Route path="/students/:id" element={<LearnerProfilePage />} />
           <Route path="/newprofile" element={<NewProfile/>} />
         </Routes>
@@ -32,12 +29,12 @@ function App() {
 
 export default App;
 
-//standard padding for  each page
-// const Content = styled.div`
-//   min-height: 120vh;
-//   width: 100vw;
-//   background-color: white;
-//   display: flex;
-//   flex-direction: column;
-//   overflow-x: scroll;
-// `;
+standard padding for  each page
+  const Content = styled.div`
+   min-height: 120vh;
+   width: 100vw;
+   background-color: white;
+   display: flex;
+   flex-direction: column;
+   overflow-x: scroll;
+ `;

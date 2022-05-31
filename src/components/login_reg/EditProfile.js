@@ -11,6 +11,7 @@ import NavbarMob from '../ui_comp/NavbarMob';
 import { useNavigate } from 'react-router-dom';
 // import { Image } from "cloudinary-react"
 
+
 const EditProfile = () => {
     const { userId, setUserId, token, setToken } = useContext(userContext);
     const [inputs, setInputs] = useState()
@@ -23,6 +24,9 @@ const EditProfile = () => {
     const incrFiles = 0
     const navigate = useNavigate()
 
+
+
+    console.log(userId + " test " + token)
     function storeAndUpdate(data) {
         //adding data and update
         setInputs(inputs => ({ ...inputs, ...data }))
@@ -89,6 +93,7 @@ const EditProfile = () => {
             });
 
 
+
     }
 
     function autoClickInput() {
@@ -139,6 +144,7 @@ const EditProfile = () => {
                 })
         } else {
             const formData = new FormData()
+
             formData.append('file', img)
             formData.append("upload_preset", "gzllmk5l")
             Axios.post("https://api.cloudinary.com/v1_1/dxq4veqsa/upload", formData)

@@ -4,15 +4,15 @@ import styled from 'styled-components'
 import parse from 'html-react-parser'
 import mySvgArr from './svgArr.js'
 
-const Input = ({ placeholder, title, icon, marginB, type, handleChange,dataName }) => {
+const Input = ({ placeholder, title, icon, marginB, type, handleChange, dataName }) => {
   const [inputValue, setInputValue] = useState('')
-  
-  useEffect(()=>{
-    // console.log(inputValue)
+
+
+  useEffect(() => {
     handleChange({ [dataName]: inputValue })
-  },[inputValue])
-  
-  
+  }, [inputValue])
+
+
   //logos Github and Linkendin needs an extra margin
   if (marginB === undefined) {
     marginB = "4px"
