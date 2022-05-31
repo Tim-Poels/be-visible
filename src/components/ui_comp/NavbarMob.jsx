@@ -40,6 +40,9 @@ const NavbarMob = () => {
             <li>
               <Link to="/edit">Edit my page</Link>
             </li>
+            <li>
+              <Link to="/addproject">Add a project</Link>
+            </li>
           </ul>
         </div>
       </div>

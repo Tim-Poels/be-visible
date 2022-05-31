@@ -6,6 +6,8 @@ import SearchProfiles from "./components/SearchProfiles/SearchProfiles.js"
 import RegisterPage from './Pages/RegisterPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { NewProvider } from './context'
+import NewProfile from './components/login_reg/NewProfile';
+import AddProjects from "./Pages/AddProjects"
 
 
 function App() {
@@ -16,8 +18,10 @@ function App() {
           <Route path="/" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/students" element={<SearchProfiles />} />
-          <Route path="/students/:id" element={<LearnerProfilePage />} />
           <Route path="/edit" element={<EditProfile />} />
+          <Route path="/students/:id" element={<LearnerProfilePage />} />
+          <Route path="/newprofile" element={<NewProfile />} />
+          <Route path="/addproject" element={<AddProjects />} />
         </Routes>
       </BrowserRouter>
     </NewProvider>
@@ -27,12 +31,3 @@ function App() {
 
 export default App;
 
-//standard padding for  each page
-// const Content = styled.div`
-//   min-height: 120vh;
-//   width: 100vw;
-//   background-color: white;
-//   display: flex;
-//   flex-direction: column;
-//   overflow-x: scroll;
-// `;

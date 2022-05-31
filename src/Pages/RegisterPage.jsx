@@ -1,7 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef,useContext } from "react";
+import { userContext } from "../context";
 import "../components/login-page/login-page.css";
 import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   //code for setting username and password
@@ -12,14 +13,53 @@ const RegisterPage = () => {
   const [errMsg, setErrMsg] = useState("");
 
   const [checked, setChecked] = useState(false);
+  const { userId, setUserId, token, setToken } = useContext(userContext);
+  
+
   const handleCheckboxChange = () => {
     setChecked(!checked);
   };
-  const LOGIN_URL = "https://bevisible-backend.herokuapp.com/user/signup";
+  const navigate = useNavigate();
+  const REG_URL = "https://bevisible-backend.herokuapp.com/user/signup";
+  const LOG_URL = "https://bevisible-backend.herokuapp.com/user/signin"
+
+  const myNav = () =>{
+    navigate("/newprofile", { replace: true });
+  } 
+
+  const fetchLogin = () => {
+    fetch(LOG_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      body: JSON.stringify({
+        //change coach to email after you can register with an email
+        email: email,
+        password: pwd,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.id && data.accessToken) {
+          setUserId(data.id);
+          setToken(data.accessToken);
+          setErrMsg("Login sucessful");
+          setTimeout(() => {
+            myNav()
+          }, "250");
+        } else {
+          setErrMsg("Login failed");
+        }
+      });
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    fetch(LOGIN_URL, {
+    console.log("startFetch")
+    fetch(REG_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,11 +75,13 @@ const RegisterPage = () => {
       .then((data) => {
         console.log(data);
         setErrMsg(data.error);
+        fetchLogin()
       })
       .catch(error => {
         console.log("catch")
         setErrMsg(error.message);
-      });
+        myNav()
+      }); 
   };
 
   return (

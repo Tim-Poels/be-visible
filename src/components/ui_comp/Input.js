@@ -4,8 +4,9 @@ import styled from 'styled-components'
 import parse from 'html-react-parser'
 import mySvgArr from './svgArr.js'
 
-const Input = ({ placeholder, title, icon, marginB, type, handleChange, dataName }) => {
+const Input = ({ placeholder, title, icon, marginB, type, handleChange, dataName, area }) => {
   const [inputValue, setInputValue] = useState('')
+
 
   useEffect(() => {
     handleChange({ [dataName]: inputValue })
@@ -25,10 +26,15 @@ const Input = ({ placeholder, title, icon, marginB, type, handleChange, dataName
     <Container>
       <InpTitle>{title}</InpTitle>
       <div className="label-float">
-        <FlexCont>
+        <FlexCont style={area === undefined ? {display:"visible"} : {display:"none"}}>
           <Icon style={{ marginBottom: marginB }} >{icon != null ? parse(mySvgArr[icon]) : ''}</Icon>
           <input type={type != null ? type : "text"} placeholder={title} onChange={updValue} value={inputValue} />
           <label>{placeholder}</label>
+        </FlexCont>
+        <FlexCont style={area === "true" ? {display:"visible"} : {display:"none"}}>
+          <Icon style={{ marginBottom: marginB }} >{icon != null ? parse(mySvgArr[icon]) : ''}</Icon>
+          <textarea style={{outline:"none"}} rows="4" cols="50" type={type != null ? type : "text"} placeholder={placeholder} onChange={updValue} value={inputValue}></textarea>
+          <label>{}</label>
         </FlexCont>
       </div>
     </Container>
