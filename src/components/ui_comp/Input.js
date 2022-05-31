@@ -7,6 +7,7 @@ import mySvgArr from './svgArr.js'
 const Input = ({ placeholder, title, icon, marginB, type, handleChange, dataName }) => {
   const [inputValue, setInputValue] = useState('')
 
+
   useEffect(() => {
     handleChange({ [dataName]: inputValue })
   }, [inputValue])

@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import "../components/login-page/login-page.css";
 import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   //code for setting username and password
@@ -12,9 +12,12 @@ const RegisterPage = () => {
   const [errMsg, setErrMsg] = useState("");
 
   const [checked, setChecked] = useState(false);
+  
+
   const handleCheckboxChange = () => {
     setChecked(!checked);
   };
+  const navigate = useNavigate();
   const LOGIN_URL = "https://bevisible-backend.herokuapp.com/user/signup";
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,6 +37,7 @@ const RegisterPage = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        navigate("/newprofile", { replace: true });
         setErrMsg(data.message);
       });
   };

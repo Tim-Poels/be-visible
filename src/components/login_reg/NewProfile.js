@@ -8,11 +8,11 @@ import Checkbox from '../ui_comp/Checkbox.js'
 import cvImage from '../../images/cvImage.png'
 import Axios from 'axios'
 import NavbarMob from '../ui_comp/NavbarMob';
-import { useNavigate } from 'react-router-dom';
 // import { Image } from "cloudinary-react"
+import { useNavigate } from "react-router-dom";
 
 
-const EditProfile = () => {
+const NewProfile = () => {
     const { userId, setUserId, token, setToken } = useContext(userContext);
     const [inputs, setInputs] = useState()
     const [inputAccept, setInputAccept] = useState()
@@ -25,8 +25,6 @@ const EditProfile = () => {
     const navigate = useNavigate()
 
 
-
-    console.log(userId + " test " + token)
     function storeAndUpdate(data) {
         //adding data and update
         setInputs(inputs => ({ ...inputs, ...data }))
@@ -37,8 +35,8 @@ const EditProfile = () => {
         console.log(inputs)
         console.log(inputAccept)
         // /user/profile/new
-        const EDIT_P_URL = "https://bevisible-backend.herokuapp.com/user/profile/edit";
-
+        const EDIT_P_URL = "https://bevisible-backend.herokuapp.com/user/profile/new";
+        console.log(userId)
         fetch(EDIT_P_URL, {
             method: "POST",
             headers: {
@@ -93,7 +91,6 @@ const EditProfile = () => {
             });
 
 
-
     }
 
     function autoClickInput() {
@@ -144,7 +141,6 @@ const EditProfile = () => {
                 })
         } else {
             const formData = new FormData()
-
             formData.append('file', img)
             formData.append("upload_preset", "gzllmk5l")
             Axios.post("https://api.cloudinary.com/v1_1/dxq4veqsa/upload", formData)
@@ -174,7 +170,7 @@ const EditProfile = () => {
 
         <Container>
             <NavbarMob></NavbarMob>
-            <MainTitle>EditProfile</MainTitle>
+            <MainTitle>NewProfile</MainTitle>
             <InputCont>
                 <Input title={"First Name"} placeholder={"John"} icon={0} handleChange={storeAndUpdate} dataName={"firstname"}></Input>
                 <Input title={"Last Name"} placeholder={"Doe"} icon={1} handleChange={storeAndUpdate} dataName={"lastname"}></Input>
@@ -215,7 +211,7 @@ const EditProfile = () => {
     )
 }
 
-export default EditProfile
+export default NewProfile
 
 const Container = styled.div`
     display: flex;
