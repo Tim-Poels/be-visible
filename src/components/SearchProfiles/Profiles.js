@@ -6,14 +6,9 @@ import { userContext } from "../../context";
 
 export default function Profiles(props) {
 	let navigate = useNavigate();
-
 	//Use Context for retrieving the acess token and passing it in the Fetch
 	const { token } = useContext(userContext);
-
-
-
 	if (props.switchPage !== false) {
-		//Navigate(`/students/${props.switchPage}`);	
 		navigate(`/students/${props.switchPage}`, { replace: true });
 	}
 	fetchAllProfiles(props, token);

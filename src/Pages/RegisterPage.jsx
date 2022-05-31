@@ -74,14 +74,14 @@ const RegisterPage = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        setErrMsg(data.error);
         fetchLogin()
-        setErrMsg(data.message);
       })
-      .catch(function(error){
-        console.log("my error");
+      .catch(error => {
+        console.log("catch")
+        setErrMsg(error.message);
         myNav()
-      })
-      
+      }); 
   };
 
   return (
@@ -98,7 +98,7 @@ const RegisterPage = () => {
             Register
           </Link>
         </div>
-        <p ref={errRef} id="poppup" className="margin-p">
+        <p ref={errRef} id="poppup" className="poppup margin-p">
           {errMsg}
         </p>
         <div className="form-container">
