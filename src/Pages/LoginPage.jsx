@@ -42,15 +42,22 @@ const LoginPage = () => {
       .then((data) => {
         console.log(data);
         if (data.id && data.accessToken) {
+          console.log("succes")
           setUserId(data.id);
           setToken(data.accessToken);
-          setErrMsg("Login sucessful");
+          //setErrMsg("Login sucessful");
           setTimeout(() => {
             navigate("/students", { replace: true });
           }, "250");
         } else {
-          setErrMsg("Login failed");
+          console.log("fail");
+          if (data.message) {
+            setErrMsg(data.message);
+          }
         }
+      })
+      .catch(error => {
+        setErrMsg(error);
       });
   };
 
@@ -69,7 +76,7 @@ const LoginPage = () => {
           <Link to="register">Register</Link>
         </div>
         <div className="form-container">
-          <p ref={errRef} id="poppup" className="margin-p">
+          <p ref={errRef} className="margin-p poppup">
             {errMsg}
           </p>
           <form onSubmit={handleSubmit}>
