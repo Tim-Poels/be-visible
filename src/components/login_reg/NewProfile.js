@@ -57,7 +57,7 @@ const NewProfile = () => {
                     frontend: inputs.frontend,
                     backend: inputs.backend
                 },
-                about: "",
+                about: inputs.about,
                 status: "",
                 tags: "",
                 work: {
@@ -86,7 +86,7 @@ const NewProfile = () => {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-                navigate("/students/:id", { replace: true });
+                navigate("/students", { replace: true });
                 // setErrMsg(data.message);
             });
 
@@ -203,6 +203,7 @@ const NewProfile = () => {
                 <Input title={"Github"} placeholder={"https://github.com/johndoe01"} icon={5} marginB={"6px"} handleChange={storeAndUpdate} dataName={"github"}></Input>
                 <Input title={"Linkedin"} placeholder={"https://linkedin.com/johndoe01"} icon={6} marginB={"6px"} handleChange={storeAndUpdate} dataName={"linkedin"}></Input>
                 <Input title={"Website"} placeholder={"https://www.johndoe01.com"} icon={7} handleChange={storeAndUpdate} dataName={"website"}></Input>
+                <Input title={"About"} placeholder={"me, myselF, and I"} icon={0} handleChange={storeAndUpdate} dataName={"about"} area={"true"}></Input>
             </InputCont>
             <Button buttonText={"Edit Profile"} width={"318px"} submitForm={handleSubmit}>
             </Button>
