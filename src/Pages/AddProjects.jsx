@@ -56,9 +56,9 @@ const NewProfile = () => {
 
         id: userId,
         student_id: userId,
-        name: "inputs.name",
-        image: ["test", "test"],
-        link: "inputs.link",
+        name: inputs.name,
+        image: [inputs.picture, "test"],
+        link: inputs.link,
       }),
     })
       .then((response) => response.json())
