@@ -7,6 +7,7 @@ import RegisterPage from './Pages/RegisterPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { NewProvider } from './context'
 import NewProfile from './components/login_reg/NewProfile';
+import AddProjects from "./Pages/AddProjects"
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/edit" element={<EditProfile />} />
           <Route path="/students/:id" element={<LearnerProfilePage />} />
           <Route path="/newprofile" element={<NewProfile />} />
+          <Route path="/addproject" element={<AddProjects />} />
         </Routes>
       </BrowserRouter>
     </NewProvider>
