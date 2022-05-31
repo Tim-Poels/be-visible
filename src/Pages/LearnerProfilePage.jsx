@@ -10,7 +10,7 @@ import theaterapp from "../components/learner-profile/test-img/theaterapp.jpg";
 import Header from "../components/learner-profile/Header";
 import Resume from "../components/learner-profile/Resume";
 import StatusBar from "../components/learner-profile/StatusBar";
-import Portfolio from "../components/learner-profile/Portfolio";
+import Carousel from "../components/learner-profile/Carousel";
 import Certifications from "../components/learner-profile/Certifications";
 import ContactPhone from "../components/learner-profile/ContactPhone";
 import ContactEmail from "../components/learner-profile/ContactEmail";
@@ -91,8 +91,7 @@ const LearnerProfile = () => {
 
       <Section>
         <h2>Portfolio</h2>
-        <Portfolio name={"DogBook"} img={portfolioImg} />
-        <Portfolio name={"One Theater App"} img={theaterapp} />
+        <Carousel projects={profile.projects} />
       </Section>
 
       <Section primary>

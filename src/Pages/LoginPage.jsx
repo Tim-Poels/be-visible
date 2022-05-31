@@ -42,7 +42,7 @@ const LoginPage = () => {
       .then((data) => {
         console.log(data);
         if (data.id && data.accessToken) {
-          console.log("succes")
+          console.log("succes");
           setUserId(data.id);
           setToken(data.accessToken);
           //setErrMsg("Login sucessful");
@@ -75,10 +75,10 @@ const LoginPage = () => {
           </Link>
           <Link to="register">Register</Link>
         </div>
+        <p ref={errRef} className="margin-p poppup">
+          {errMsg}
+        </p>
         <div className="form-container">
-          <p ref={errRef} id="poppup" className="margin-p poppup">
-            {errMsg}
-          </p>
           <form onSubmit={handleSubmit}>
             <div className="input-div">
               <input
