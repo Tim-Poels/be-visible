@@ -22,11 +22,18 @@ const NewProfile = () => {
   const inputFile = useRef();
   const incrFiles = 0;
   const navigate = useNavigate();
+  //code for setting error messages above the form
+  const errRef = useRef("");
+  const [errMsg, setErrMsg] = useState("");
 
   function storeAndUpdate(data) {
     //adding data and update
     setInputs((inputs) => ({ ...inputs, ...data }));
   }
+
+  const myNav = () => {
+    navigate("/students", { replace: true });
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -57,6 +64,16 @@ const NewProfile = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        if (data.success) {
+          setErrMsg(data.success);
+          setTimeout(() => {
+            myNav();
+          }, "250");
+        } else if (data.error) {
+          setErrMsg(data.error);
+        } else {
+          setErrMsg(data.message);
+        }
         //navigate("/students/:id", { replace: true });
         // setErrMsg(data.message);
       });
@@ -127,6 +144,9 @@ const NewProfile = () => {
     <Container>
       <NavbarMob></NavbarMob>
       <MainTitle>Add a project</MainTitle>
+      <p ref={errRef} id="poppup" className="margin-p">
+        {errMsg}
+      </p>
       <form onSubmit={handleSubmit}>
         <InputCont>
           <Input
