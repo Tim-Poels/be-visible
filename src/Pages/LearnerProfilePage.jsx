@@ -20,10 +20,9 @@ import { userContext } from "../context";
 import { useContext, useState } from "react";
 
 const LearnerProfile = () => {
-  /*
-  const { userId, token, } = useContext(userContext);
+  const { userId, token } = useContext(userContext);
   console.log("testing states " + token);
-  */
+
   const [profile, setProfile] = useState(null);
 
   React.useEffect(() => {
@@ -39,8 +38,7 @@ const LearnerProfile = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-access-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTQ3YzRmOTkwNmQ3MmY4MDZmZTg2MCIsImlhdCI6MTY1Mzg5ODQ2NywiZXhwIjoxNjUzOTg0ODY3fQ.FK8WGP5uZoaSR5L7YmQjz1buOpO9HILIkI9lbJSs75Q",
+        "x-access-token": token,
       },
       mode: "cors",
       body: JSON.stringify({
